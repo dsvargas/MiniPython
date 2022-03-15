@@ -1,27 +1,53 @@
 lexer grammar Grammar;
 
 //Tokens de MiniPy
+tokens { INDENT, DEDENT }
+
+@lexer::header{
+from antlr_denter.DenterHelper import DenterHelper
+from miParserParser import miParserParser
+}
+@lexer::members {
+class MyCoolDenter(DenterHelper):
+    def __init__(self, lexer, nl_token, indent_token, dedent_token, ignore_eof):
+        super().__init__(nl_token, indent_token, dedent_token, ignore_eof)
+        self.lexer: miParserLexer = lexer
+
+    def pull_token(self):
+        return super(miParserLexer, self.lexer).nextToken()
+
+denter = None
+
+def nextToken(self):
+    if not self.denter:
+        self.denter = self.MyCoolDenter(self, self.NEWLINE, miParserParser.INDENT, miParserParser.DEDENT, False)
+    return self.denter.next_token()
+}
+
+
 
 // PALABRAS RESERVADAS
 IF : 'if';
 ELSE : 'else';
-SWITCH : 'switch';
-CASE : 'case';
-DEFAULT : 'default';
 FOR : 'for';
+IN:'in';
 BREAK : 'break';
 CONTINUE : 'continue';
 RETURN : 'return';
 PRINT : 'print';
-PRINTLN: 'println';
+PRINTLN: 'println';//¿R.10?
 PACKAGE : 'package';
 VAR: 'var';
 TYPE: 'type';
-FUNC: 'func';
+DEF: 'def';
 STRUCT: 'struct';
 APPEND: 'append';
 LEN : 'len';
 CAP: 'cap';
+WHILE: 'while';
+
+
+
 
 // SIMBOLOS
 PyCOMA : ';';
@@ -78,7 +104,6 @@ LLAVEDER:'}';
 INTLITERAL: DIGIT DIGIT* ;
 fragment DIGIT : [0-9];
 
-//-------------------------------------------------------
 FLOATLITERAL: DECIMAL_FLOAT_LIT | HEX_FLOAT_LIT;
 DECIMAL_FLOAT_LIT      : DECIMALS ('.' DECIMALS? EXPONENT? | EXPONENT)
                        | '.' DECIMALS EXPONENT?;
@@ -89,8 +114,21 @@ fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment DECIMALS: [0-9] ('_'? [0-9])*;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
+
+//-------------------------------------------------------
+ID : LETTER (LETTER+DIGIT)*;
+fragment LETTER : [a-z];
+
+RAWSTRINGLITERAL: '`' ~'`'*                      '`';
+
+NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*
+
+WS  :   [ +\r\n\t] -> skip ;
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-program : statement | statement Program;
+program : statement | statement program;
 
 statement : defStatement
             | ifStatement
@@ -98,59 +136,60 @@ statement : defStatement
             | printStatement
             | whileStatement
             | forStatement
-            | assignStatment
+            | assignStatement
             | functionCallStatement
             | expressionStatement;
 
-defStatement : def identifier ( argList ) DOSPUNTOS Sequence;
+defStatement : DEF ID ( argList ) DOSPUNTOS sequence;
 
-argList : identifier arglist | ε;
+argList : ID argList | ;
 
-moreArgs :  identifier moreArgs | ε;
-ifStatement : If expression DOSPUNTOS sequence else DOSPUNTOS sequence;
+moreArgs :  ID moreArgs |  ;
+ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence;
 
-whileStatement : While expression DOSPUNTOS sequence;
-forStatement : For expression IN expressionList DOSPUNTOS Sequence;
+whileStatement : WHILE expression DOSPUNTOS sequence;
+forStatement : FOR expression IN expressionList DOSPUNTOS sequence;
 
 returnStatement : RETURN expression NEWLINE;
 printStatement : PRINT expression NEWLINE;
 
-assignStatement : identifier IGUAL expression NEWLINE;
+assignStatement : ID EQUALS expression NEWLINE;
 
 functionCallStatement : primitiveExpression PARENTESISIZQ expressionList PARENTESISDER NEWLINE;
 
 expressionStatement : expressionList NEWLINE;
 
-sequence : NEWLINE INDENT MoreStatements DEDENT;
+sequence : INDENT moreStatements DEDENT;
 
 moreStatements : statement moreStatements
                 | statement;
 
 expression : additionExpression comparison;
-comparison : (<|>|<=|>=|==) AdditionExpression Comparison | ε;
+comparison : (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression comparison |  ;
 additionExpression : multiplicationExpression additionFactor;
-additionFactor : (+|-) MultiplicationExpression AdditionFactor | ε;
+additionFactor : (SUM|RES) multiplicationExpression additionFactor |  ;
 multiplicationExpression : elementExpression multiplicationFactor;
 
-multiplicationFactor : (*|/) elementExpression multiplicationFactor | ε;
+multiplicationFactor : (MUL|DIV) elementExpression multiplicationFactor |  ;
 
-elementExpression : primitiveExpression ElementAccess;
-elementAccess : BRACKETIZQ expression BRACKETDER elementAcess | ε;
+elementExpression : primitiveExpression elementAccess;
+elementAccess : BRACKETIZQ expression BRACKETDER elementAccess |  ;
 
 functionCallExpression : primitiveExpression ( expressionList );
-expressionList : expression moreExpressions | ε;
-moreExpressions : COMA expression moreExpressions | ε;
-primitiveExpression : Integer
-                    | String
-                    | NAME
+expressionList : expression moreExpressions |  ;
+moreExpressions : COMA expression moreExpressions |  ;
+primitiveExpression : INTLITERAL
+                    | FLOATLITERAL
+                    | LETTER
+                    | RAWSTRINGLITERAL
+                    | ID (( expressionList ) |   )
                     | ( expression )
                     | listExpression
-                    | len ( expression )
-                    | functionCallExpression;
+                    | LEN ( expression );
 
 listExpression : BRACKETIZQ expressionList BRACKETDER;
 
-14.	Sequence := NEWLINE INDENT MoreStatements DEDENT //preguntar
+//14.	Sequence := NEWLINE INDENT MoreStatements DEDENT //preguntar
 
 
 
@@ -181,8 +220,7 @@ listExpression : BRACKETIZQ expressionList BRACKETDER;
 //21.	MultiplicationFactor := (*|/) ElementExpression MultiplicationFactor | ε
 //22.	ElementExpression := PrimitiveExpression ElementAccess
 //23.	ElementAccess := [ Expression ] ElementAcess | ε
-//24.	FunctionCallExpression := PrimitiveExpression ( ExpressionList )
-//25.	ExpressionList := Expression MoreExpressions | ε
-//26.	MoreExpressions := , Expression MoreExpressions | ε
-//27.	PrimitiveExpression := Integer | String | NAME | ( Expression ) | ListExpression | len ( Expression ) | FunctionCallExpression
-//28.	ListExpression := [ ExpressionList ]
+//24.	ExpressionList := Expression MoreExpressions | ε
+//25.	MoreExpressions := , Expression MoreExpressions | ε
+//26.	PrimitiveExpression := Integer | String | NAME | ( Expression ) | ListExpression | len ( Expression ) | FunctionCallExpression
+//27.	ListExpression := [ ExpressionList ]
