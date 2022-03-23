@@ -25,15 +25,12 @@ def nextToken(self):
 //1,4,5,15,17,19,21,23 y 25
 
 /*
-    N       X           Y           N
-program := statement | statement Program
-
 N ::= X | N Y  ->  N::= X Y*
-
 */
 
 //1.	Program := Statement | Statement Program
-//program : statement | statement program  ;
+//    N       X           Y           N
+//program := statement | statement Program
 program : statement statement * ;
 
 //2. Statement := DefStatement | IfStatement | ReturnStatement | PrintStatement | WhileStatement | ForStatement | AssignStatment | FunctionCallStatement | ExpressionStatement
@@ -50,8 +47,9 @@ statement : defStatement
 defStatement : DEF ID ( argList ) DOSPUNTOS sequence;
 //4.	ArgList := identifier MoreArgs | ε
 argList : ID moreArgs | ;///identifider*
+//          N
 //5.	MoreArgs := , identifier MoreArgs | ε
-moreArgs : COMA ID moreArgs |  ;
+moreArgs : (COMA ID)*  ;
 //6.	IfStatement := if Expression : Sequence else : Sequence
 ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence;
 //7.	WhileStatement := while Expression : Sequence
@@ -79,40 +77,40 @@ moreStatements : statement  statement*;
 expression : additionExpression comparison;
 //          N               x               y               n
 //17.	Comparison := (<|>|<=|>=|==) AdditionExpression*
-comparison : (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression* ;
+comparison : ( (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression )* ;
 //18.	AdditionExpression := MultiplicationExpression AdditionFactor
 additionExpression : multiplicationExpression additionFactor;
 //19.	AdditionFactor := (+|-) MultiplicationExpression AdditionFactor | ε
 // N                 X                Y                       N
-additionFactor : (SUM|RES) multiplicationExpression* ;
+additionFactor :( (SUM|RES) multiplicationExpression )* ;
 //20.	MultiplicationExpression := ElementExpression MultiplicationFactor
 multiplicationExpression : elementExpression multiplicationFactor | ;
 //21.	MultiplicationFactor := (*|/) ElementExpression MultiplicationFactor | ε
 //      N                    X                Y                      N
-multiplicationFactor : (MUL|DIV) elementExpression*   ;
+multiplicationFactor :( (MUL|DIV) elementExpression )*   ;
 //22.	ElementExpression := PrimitiveExpression ElementAccess
 elementExpression : primitiveExpression elementAccess;
 //23.	ElementAccess := [ Expression ] ElementAcess | ε
 // N                        X                          N            Y
 //elementAccess : BRACKETIZQ expression BRACKETDER elementAccess |  ;
-elementAccess : BRACKETIZQ expression BRACKETDER  |  ;
+elementAccess : (BRACKETIZQ expression BRACKETDER)*    ;
 
 //24.	ExpressionList := Expression MoreExpressions | ε
 expressionList : expression moreExpressions |  ;
 //25.	MoreExpressions := , Expression MoreExpressions | ε
 //  N                       X           N           Y
 //moreExpressions : COMA expression moreExpressions |  ;
-moreExpressions : COMA expression  |  ;
+moreExpressions : (COMA expression)*    ;
 
 //26.	PrimitiveExpression := integer | float | charConst |  String | identifier (( ExpressionList ) | ε ) | ( Expression ) | ListExpression | len ( Expression )
 primitiveExpression : INTLITERAL
                     | FLOATLITERAL
-                    | LETTER
+                    | CHARCONST
                     | RAWSTRINGLITERAL
-                    | ID (( expressionList ) |   )
-                    | ( expression )
+                    | ID (PARENTESISIZQ expressionList PARENTESISDER |   )
+                    | PARENTESISIZQ expression PARENTESISDER
                     | listExpression
-                    | LEN ( expression );
+                    | LEN PARENTESISIZQ expression PARENTESISDER;
 
 //27.	ListExpression := [ ExpressionList ]
 listExpression : BRACKETIZQ expressionList BRACKETDER;
@@ -146,7 +144,14 @@ LEN : 'len';
 
 
 // SIMBOLOS
+
+COMA:',';
 PyCOMA : ';';
+PUNTO:'.';
+DOSPUNTOS:':';
+DOSPUNTOSIGUAL: ':=';
+
+
 EQUALS : '==';
 ASYGN : '=';
 SUM2: '++';
@@ -172,40 +177,38 @@ PORCENTAJEIGUAL: '%=';
 AND2:'&&';
 AND:'&';
 OR2:'||';
-ORIGUAL: '|=';
 OR:'|';
+ORIGUAL: '|=';
+
+
 PARENTESISIZQ:'(';
 PARENTESISDER:')';
-COMA:',';
-PUNTO:'.';
-DOSPUNTOS:':';
-DOSPUNTOSIGUAL: ':=';
 BRACKETIZQ:'[';
 BRACKETDER:']';
-DOBLEMENORQUE: '<<';
-DOBLEMAYORQUE: '>>';
-ELEVADO:'^';
-ELEVADOIGUAL: '^=';
-GUIONBAJO:'_';
 LLAVEIZQ:'{';
 LLAVEDER:'}';
 
+
+
+
 //************LITERALS*******************+
+ID : LETTER (LETTER+DIGIT)*;
+CHARCONST : DIGIT | LETTER ;
+RAWSTRINGLITERAL: '`' ~'`'*                      '`';
 INTLITERAL: DIGIT DIGIT* ;
-fragment DIGIT : [0-9];
-FLOATLITERAL: DECIMAL_FLOAT_LIT | HEX_FLOAT_LIT;
 DECIMAL_FLOAT_LIT      : DECIMALS ('.' DECIMALS? EXPONENT? | EXPONENT)
                        | '.' DECIMALS EXPONENT?;
+FLOATLITERAL: DECIMAL_FLOAT_LIT | HEX_FLOAT_LIT;
 HEX_FLOAT_LIT          : '0' [xX] HEX_MANTISSA HEX_EXPONENT;
 fragment HEX_MANTISSA  : ('_'? HEX_DIGIT)+ ('.' ( '_'? HEX_DIGIT )*)?
                        | '.' HEX_DIGIT ('_'? HEX_DIGIT)*;
-fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
+fragment DIGIT : [0-9];
 fragment DECIMALS: [0-9] ('_'? [0-9])*;
+fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
 //-------------------------------------------------------
-ID : LETTER (LETTER+DIGIT)*;
 fragment LETTER : [a-z];
-RAWSTRINGLITERAL: '`' ~'`'*                      '`';
+
 NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*
 WS  :   [ +\r\n\t] -> skip ;
