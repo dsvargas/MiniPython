@@ -44,14 +44,14 @@ statement : defStatement
             | functionCallStatement
             | expressionStatement;
 //3.	DefStatement := def identifier ( ArgList ) : Sequence
-defStatement : DEF ID ( argList ) DOSPUNTOS sequence;
+defStatement : DEF ID PARENTESISIZQ argList PARENTESISDER DOSPUNTOS sequence;
 //4.	ArgList := identifier MoreArgs | ε
 argList : ID moreArgs | ;///identifider*
 //          N
 //5.	MoreArgs := , identifier MoreArgs | ε
 moreArgs : (COMA ID)*  ;
 //6.	IfStatement := if Expression : Sequence else : Sequence
-ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence;
+ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence ;
 //7.	WhileStatement := while Expression : Sequence
 whileStatement : WHILE expression DOSPUNTOS sequence;
 //8.	ForStatement := for Expression in ExpressionList : Sequence
@@ -59,9 +59,9 @@ forStatement : FOR expression IN expressionList DOSPUNTOS sequence;
 //9.	ReturnStatement := return Expression NEWLINE
 returnStatement : RETURN expression NEWLINE;
 //10.	PrintStatement := print Expression NEWLINE
-printStatement : PRINT expression NEWLINE;
+printStatement : PRINT PARENTESISIZQ expression PARENTESISDER NEWLINE;
 //11.	AssignStatement := identifier = Expression NEWLINE
-assignStatement : ID EQUALS expression NEWLINE;
+assignStatement : ID ASYGN expression NEWLINE;
 //12.	FunctionCallStatement := PrimitiveExpression ( ExpressionList ) NEWLINE
 functionCallStatement : primitiveExpression PARENTESISIZQ expressionList PARENTESISDER NEWLINE;
 //13.	ExpressionStatement := ExpressionList NEWLINE
@@ -105,7 +105,7 @@ moreExpressions : (COMA expression)*    ;
 //26.	PrimitiveExpression := integer | float | charConst |  String | identifier (( ExpressionList ) | ε ) | ( Expression ) | ListExpression | len ( Expression )
 primitiveExpression : INTLITERAL
                     | FLOATLITERAL
-                    | //CHARCONST
+                    | CHAR_LITERAL
                     | RAWSTRINGLITERAL
                     | ID (PARENTESISIZQ expressionList PARENTESISDER |   )
                     | PARENTESISIZQ expression PARENTESISDER
@@ -192,9 +192,12 @@ LLAVEDER:'}';
 
 
 //************LITERALS*******************+
-ID : LETTER (LETTER+DIGIT)*;
-//CHARCONST : DIGIT | LETTER ;
-RAWSTRINGLITERAL: '`' ~'`'*                      '`';
+ID : LETTER (LETTER|DIGIT)*;
+CHAR_LITERAL:  '\\' [btnfr"'\\]
+            |     '\'' ~['\\\r\n] '\''
+            |'\\' 'u'+ [0-9a-fA-F];
+
+RAWSTRINGLITERAL: '"' ~'"'* '"';
 INTLITERAL: DIGIT DIGIT* ;
 DECIMAL_FLOAT_LIT      : DECIMALS ('.' DECIMALS? EXPONENT? | EXPONENT)
                        | '.' DECIMALS EXPONENT?;
@@ -207,13 +210,10 @@ fragment DECIMALS: [0-9] ('_'? [0-9])*;
 fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
-fragment LETTER : [a-z];
 
-fragment COMMENT
- : '#' ~[\r\n\f]*
- ;
+fragment LETTER : [a-zA-Z\u0080-\u00FF_];
 
-//-------------------------------------------------------
 
-NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*
+COMMENT : '#' ~[\r\n\f]* ->skip;
 WS  :   [ +\r\n\t] -> skip ;
+NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*
