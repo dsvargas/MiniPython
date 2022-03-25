@@ -51,7 +51,7 @@ argList : ID moreArgs | ;///identifider*
 //5.	MoreArgs := , identifier MoreArgs | ε
 moreArgs : (COMA ID)*  ;
 //6.	IfStatement := if Expression : Sequence else : Sequence
-ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence;
+ifStatement : IF  expression  DOSPUNTOS sequence ELSE DOSPUNTOS sequence;
 //7.	WhileStatement := while Expression : Sequence
 whileStatement : WHILE expression DOSPUNTOS sequence;
 //8.	ForStatement := for Expression in ExpressionList : Sequence
@@ -207,9 +207,15 @@ fragment DECIMALS: [0-9] ('_'? [0-9])*;
 fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
+
+
 fragment LETTER : [a-z];
 
-fragment COMMENT
+STRING_LITERAL
+ : '"' .*? '"'
+ ;
+
+ COMMENT
  : '#' ~[\r\n\f]*
  ;
 

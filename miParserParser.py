@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3E")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3G")
         buf.write("\u00e8\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -56,13 +56,13 @@ def serializedATN():
         buf.write("\2ab\7\33\2\2bc\5\34\17\2c\r\3\2\2\2de\7\5\2\2ef\5 \21")
         buf.write("\2fg\7\33\2\2gh\5\34\17\2h\17\3\2\2\2ij\7\b\2\2jk\5 \21")
         buf.write("\2kl\7\t\2\2lm\5\60\31\2mn\7\33\2\2no\5\34\17\2o\21\3")
-        buf.write("\2\2\2pq\7\20\2\2qr\5 \21\2rs\7B\2\2s\23\3\2\2\2tu\7\21")
-        buf.write("\2\2uv\5 \21\2vw\7B\2\2w\25\3\2\2\2xy\7<\2\2yz\7\35\2")
-        buf.write("\2z{\5 \21\2{|\7B\2\2|\27\3\2\2\2}~\5\64\33\2~\177\7\66")
+        buf.write("\2\2\2pq\7\20\2\2qr\5 \21\2rs\7D\2\2s\23\3\2\2\2tu\7\21")
+        buf.write("\2\2uv\5 \21\2vw\7D\2\2w\25\3\2\2\2xy\7<\2\2yz\7\35\2")
+        buf.write("\2z{\5 \21\2{|\7D\2\2|\27\3\2\2\2}~\5\64\33\2~\177\7\66")
         buf.write("\2\2\177\u0080\5\60\31\2\u0080\u0081\7\67\2\2\u0081\u0082")
-        buf.write("\7B\2\2\u0082\31\3\2\2\2\u0083\u0084\5\60\31\2\u0084\u0085")
-        buf.write("\7B\2\2\u0085\33\3\2\2\2\u0086\u0087\7D\2\2\u0087\u0088")
-        buf.write("\5\36\20\2\u0088\u0089\7E\2\2\u0089\35\3\2\2\2\u008a\u008e")
+        buf.write("\7D\2\2\u0082\31\3\2\2\2\u0083\u0084\5\60\31\2\u0084\u0085")
+        buf.write("\7D\2\2\u0085\33\3\2\2\2\u0086\u0087\7F\2\2\u0087\u0088")
+        buf.write("\5\36\20\2\u0088\u0089\7G\2\2\u0089\35\3\2\2\2\u008a\u008e")
         buf.write("\5\4\3\2\u008b\u008d\5\4\3\2\u008c\u008b\3\2\2\2\u008d")
         buf.write("\u0090\3\2\2\2\u008e\u008c\3\2\2\2\u008e\u008f\3\2\2\2")
         buf.write("\u008f\37\3\2\2\2\u0090\u008e\3\2\2\2\u0091\u0092\5$\23")
@@ -139,8 +139,8 @@ class miParserParser ( Parser ):
                       "AND", "OR2", "OR", "ORIGUAL", "PARENTESISIZQ", "PARENTESISDER", 
                       "BRACKETIZQ", "BRACKETDER", "LLAVEIZQ", "LLAVEDER", 
                       "ID", "RAWSTRINGLITERAL", "INTLITERAL", "DECIMAL_FLOAT_LIT", 
-                      "FLOATLITERAL", "HEX_FLOAT_LIT", "NEWLINE", "WS", 
-                      "INDENT", "DEDENT" ]
+                      "FLOATLITERAL", "HEX_FLOAT_LIT", "STRING_LITERAL", 
+                      "COMMENT", "NEWLINE", "WS", "INDENT", "DEDENT" ]
 
     RULE_program = 0
     RULE_statement = 1
@@ -243,10 +243,12 @@ class miParserParser ( Parser ):
     DECIMAL_FLOAT_LIT=61
     FLOATLITERAL=62
     HEX_FLOAT_LIT=63
-    NEWLINE=64
-    WS=65
-    INDENT=66
-    DEDENT=67
+    STRING_LITERAL=64
+    COMMENT=65
+    NEWLINE=66
+    WS=67
+    INDENT=68
+    DEDENT=69
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -303,7 +305,7 @@ class miParserParser ( Parser ):
             self.state = 58
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 1)) & ~0x3f) == 0 and ((1 << (_la - 1)) & ((1 << (miParserParser.IF - 1)) | (1 << (miParserParser.WHILE - 1)) | (1 << (miParserParser.FOR - 1)) | (1 << (miParserParser.RETURN - 1)) | (1 << (miParserParser.PRINT - 1)) | (1 << (miParserParser.DEF - 1)) | (1 << (miParserParser.LEN - 1)) | (1 << (miParserParser.COMA - 1)) | (1 << (miParserParser.EQUALS - 1)) | (1 << (miParserParser.SUM - 1)) | (1 << (miParserParser.RES - 1)) | (1 << (miParserParser.DIV - 1)) | (1 << (miParserParser.MUL - 1)) | (1 << (miParserParser.MAYORIGUAL - 1)) | (1 << (miParserParser.MAYOR - 1)) | (1 << (miParserParser.MENORIGUAL - 1)) | (1 << (miParserParser.MENOR - 1)) | (1 << (miParserParser.PARENTESISIZQ - 1)) | (1 << (miParserParser.BRACKETIZQ - 1)) | (1 << (miParserParser.ID - 1)) | (1 << (miParserParser.RAWSTRINGLITERAL - 1)) | (1 << (miParserParser.INTLITERAL - 1)) | (1 << (miParserParser.FLOATLITERAL - 1)) | (1 << (miParserParser.NEWLINE - 1)))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << miParserParser.IF) | (1 << miParserParser.WHILE) | (1 << miParserParser.FOR) | (1 << miParserParser.RETURN) | (1 << miParserParser.PRINT) | (1 << miParserParser.DEF) | (1 << miParserParser.LEN) | (1 << miParserParser.COMA) | (1 << miParserParser.EQUALS) | (1 << miParserParser.SUM) | (1 << miParserParser.RES) | (1 << miParserParser.DIV) | (1 << miParserParser.MUL) | (1 << miParserParser.MAYORIGUAL) | (1 << miParserParser.MAYOR) | (1 << miParserParser.MENORIGUAL) | (1 << miParserParser.MENOR) | (1 << miParserParser.PARENTESISIZQ) | (1 << miParserParser.BRACKETIZQ) | (1 << miParserParser.ID) | (1 << miParserParser.RAWSTRINGLITERAL) | (1 << miParserParser.INTLITERAL) | (1 << miParserParser.FLOATLITERAL))) != 0) or _la==miParserParser.NEWLINE:
                 self.state = 55
                 self.statement()
                 self.state = 60
@@ -1279,7 +1281,7 @@ class miParserParser ( Parser ):
             self.state = 140
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while ((((_la - 1)) & ~0x3f) == 0 and ((1 << (_la - 1)) & ((1 << (miParserParser.IF - 1)) | (1 << (miParserParser.WHILE - 1)) | (1 << (miParserParser.FOR - 1)) | (1 << (miParserParser.RETURN - 1)) | (1 << (miParserParser.PRINT - 1)) | (1 << (miParserParser.DEF - 1)) | (1 << (miParserParser.LEN - 1)) | (1 << (miParserParser.COMA - 1)) | (1 << (miParserParser.EQUALS - 1)) | (1 << (miParserParser.SUM - 1)) | (1 << (miParserParser.RES - 1)) | (1 << (miParserParser.DIV - 1)) | (1 << (miParserParser.MUL - 1)) | (1 << (miParserParser.MAYORIGUAL - 1)) | (1 << (miParserParser.MAYOR - 1)) | (1 << (miParserParser.MENORIGUAL - 1)) | (1 << (miParserParser.MENOR - 1)) | (1 << (miParserParser.PARENTESISIZQ - 1)) | (1 << (miParserParser.BRACKETIZQ - 1)) | (1 << (miParserParser.ID - 1)) | (1 << (miParserParser.RAWSTRINGLITERAL - 1)) | (1 << (miParserParser.INTLITERAL - 1)) | (1 << (miParserParser.FLOATLITERAL - 1)) | (1 << (miParserParser.NEWLINE - 1)))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << miParserParser.IF) | (1 << miParserParser.WHILE) | (1 << miParserParser.FOR) | (1 << miParserParser.RETURN) | (1 << miParserParser.PRINT) | (1 << miParserParser.DEF) | (1 << miParserParser.LEN) | (1 << miParserParser.COMA) | (1 << miParserParser.EQUALS) | (1 << miParserParser.SUM) | (1 << miParserParser.RES) | (1 << miParserParser.DIV) | (1 << miParserParser.MUL) | (1 << miParserParser.MAYORIGUAL) | (1 << miParserParser.MAYOR) | (1 << miParserParser.MENORIGUAL) | (1 << miParserParser.MENOR) | (1 << miParserParser.PARENTESISIZQ) | (1 << miParserParser.BRACKETIZQ) | (1 << miParserParser.ID) | (1 << miParserParser.RAWSTRINGLITERAL) | (1 << miParserParser.INTLITERAL) | (1 << miParserParser.FLOATLITERAL))) != 0) or _la==miParserParser.NEWLINE:
                 self.state = 137
                 self.statement()
                 self.state = 142
