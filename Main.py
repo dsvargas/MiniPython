@@ -3,7 +3,7 @@ from miParserParser import *
 from antlr4 import *
 
 def main():
-    input = FileStream('test.txt')
+    input = FileStream('test.py')
     lexer = miParserLexer(input)
     stream = CommonTokenStream(lexer)
     parser = miParserParser(stream)

@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13137aff-389a-40dc-b920-5c310e077700" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/MiniPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MiniPython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate/miParserListener.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate/miParserVisitor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParserLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParserLexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParserLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParserParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserParser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +58,35 @@
       <recent name="C:\Users\caohi\Desktop\2022\Compi\Proyectos\Proyecto\MiniPython" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MiniPython" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,7 +99,7 @@
       <workItem from="1646845515715" duration="41000" />
       <workItem from="1646845600973" duration="477000" />
       <workItem from="1646846141137" duration="2008000" />
-      <workItem from="1647311826781" duration="18682000" />
+      <workItem from="1647311826781" duration="24099000" />
     </task>
     <servers />
   </component>
@@ -80,5 +116,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MiniPython$Main.coverage" NAME="Main Coverage Results" MODIFIED="1648213423106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

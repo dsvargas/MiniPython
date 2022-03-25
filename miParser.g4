@@ -105,7 +105,7 @@ moreExpressions : (COMA expression)*    ;
 //26.	PrimitiveExpression := integer | float | charConst |  String | identifier (( ExpressionList ) | ε ) | ( Expression ) | ListExpression | len ( Expression )
 primitiveExpression : INTLITERAL
                     | FLOATLITERAL
-                    | CHARCONST
+                    | //CHARCONST
                     | RAWSTRINGLITERAL
                     | ID (PARENTESISIZQ expressionList PARENTESISDER |   )
                     | PARENTESISIZQ expression PARENTESISDER
@@ -193,7 +193,7 @@ LLAVEDER:'}';
 
 //************LITERALS*******************+
 ID : LETTER (LETTER+DIGIT)*;
-CHARCONST : DIGIT | LETTER ;
+//CHARCONST : DIGIT | LETTER ;
 RAWSTRINGLITERAL: '`' ~'`'*                      '`';
 INTLITERAL: DIGIT DIGIT* ;
 DECIMAL_FLOAT_LIT      : DECIMALS ('.' DECIMALS? EXPONENT? | EXPONENT)
@@ -207,8 +207,13 @@ fragment DECIMALS: [0-9] ('_'? [0-9])*;
 fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
-//-------------------------------------------------------
 fragment LETTER : [a-z];
+
+fragment COMMENT
+ : '#' ~[\r\n\f]*
+ ;
+
+//-------------------------------------------------------
 
 NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*
 WS  :   [ +\r\n\t] -> skip ;
