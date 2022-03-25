@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="13137aff-389a-40dc-b920-5c310e077700" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miParserLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miParserLexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParserListener.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserListener.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miParserParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miParserVisitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserVisitor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +95,7 @@
       <workItem from="1646845515715" duration="41000" />
       <workItem from="1646845600973" duration="477000" />
       <workItem from="1646846141137" duration="2008000" />
-      <workItem from="1647311826781" duration="26295000" />
+      <workItem from="1647311826781" duration="28335000" />
     </task>
     <servers />
   </component>
@@ -115,6 +114,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MiniPython$Main.coverage" NAME="Main Coverage Results" MODIFIED="1648231058610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MiniPython$Main.coverage" NAME="Main Coverage Results" MODIFIED="1648246035940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
