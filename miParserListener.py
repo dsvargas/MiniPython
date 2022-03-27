@@ -8,246 +8,417 @@ else:
 # This class defines a complete listener for a parse tree produced by miParserParser.
 class miParserListener(ParseTreeListener):
 
-    # Enter a parse tree produced by miParserParser#program.
-    def enterProgram(self, ctx:miParserParser.ProgramContext):
+    # Enter a parse tree produced by miParserParser#programAST.
+    def enterProgramAST(self, ctx:miParserParser.ProgramASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#program.
-    def exitProgram(self, ctx:miParserParser.ProgramContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#statement.
-    def enterStatement(self, ctx:miParserParser.StatementContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#statement.
-    def exitStatement(self, ctx:miParserParser.StatementContext):
+    # Exit a parse tree produced by miParserParser#programAST.
+    def exitProgramAST(self, ctx:miParserParser.ProgramASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#defStatement.
-    def enterDefStatement(self, ctx:miParserParser.DefStatementContext):
+    # Enter a parse tree produced by miParserParser#statementDefStatementAST.
+    def enterStatementDefStatementAST(self, ctx:miParserParser.StatementDefStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#defStatement.
-    def exitDefStatement(self, ctx:miParserParser.DefStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#argList.
-    def enterArgList(self, ctx:miParserParser.ArgListContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#argList.
-    def exitArgList(self, ctx:miParserParser.ArgListContext):
+    # Exit a parse tree produced by miParserParser#statementDefStatementAST.
+    def exitStatementDefStatementAST(self, ctx:miParserParser.StatementDefStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#moreArgs.
-    def enterMoreArgs(self, ctx:miParserParser.MoreArgsContext):
+    # Enter a parse tree produced by miParserParser#statementIfStatementAST.
+    def enterStatementIfStatementAST(self, ctx:miParserParser.StatementIfStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#moreArgs.
-    def exitMoreArgs(self, ctx:miParserParser.MoreArgsContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#ifStatement.
-    def enterIfStatement(self, ctx:miParserParser.IfStatementContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#ifStatement.
-    def exitIfStatement(self, ctx:miParserParser.IfStatementContext):
+    # Exit a parse tree produced by miParserParser#statementIfStatementAST.
+    def exitStatementIfStatementAST(self, ctx:miParserParser.StatementIfStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#whileStatement.
-    def enterWhileStatement(self, ctx:miParserParser.WhileStatementContext):
+    # Enter a parse tree produced by miParserParser#statementReturnStatementAST.
+    def enterStatementReturnStatementAST(self, ctx:miParserParser.StatementReturnStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#whileStatement.
-    def exitWhileStatement(self, ctx:miParserParser.WhileStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#forStatement.
-    def enterForStatement(self, ctx:miParserParser.ForStatementContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#forStatement.
-    def exitForStatement(self, ctx:miParserParser.ForStatementContext):
+    # Exit a parse tree produced by miParserParser#statementReturnStatementAST.
+    def exitStatementReturnStatementAST(self, ctx:miParserParser.StatementReturnStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#returnStatement.
-    def enterReturnStatement(self, ctx:miParserParser.ReturnStatementContext):
+    # Enter a parse tree produced by miParserParser#statementPrintStatementAST.
+    def enterStatementPrintStatementAST(self, ctx:miParserParser.StatementPrintStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#returnStatement.
-    def exitReturnStatement(self, ctx:miParserParser.ReturnStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#printStatement.
-    def enterPrintStatement(self, ctx:miParserParser.PrintStatementContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#printStatement.
-    def exitPrintStatement(self, ctx:miParserParser.PrintStatementContext):
+    # Exit a parse tree produced by miParserParser#statementPrintStatementAST.
+    def exitStatementPrintStatementAST(self, ctx:miParserParser.StatementPrintStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#assignStatement.
-    def enterAssignStatement(self, ctx:miParserParser.AssignStatementContext):
+    # Enter a parse tree produced by miParserParser#statementWhileStatementAST.
+    def enterStatementWhileStatementAST(self, ctx:miParserParser.StatementWhileStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#assignStatement.
-    def exitAssignStatement(self, ctx:miParserParser.AssignStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#functionCallStatement.
-    def enterFunctionCallStatement(self, ctx:miParserParser.FunctionCallStatementContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#functionCallStatement.
-    def exitFunctionCallStatement(self, ctx:miParserParser.FunctionCallStatementContext):
+    # Exit a parse tree produced by miParserParser#statementWhileStatementAST.
+    def exitStatementWhileStatementAST(self, ctx:miParserParser.StatementWhileStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#expressionStatement.
-    def enterExpressionStatement(self, ctx:miParserParser.ExpressionStatementContext):
+    # Enter a parse tree produced by miParserParser#statementForStatementAST.
+    def enterStatementForStatementAST(self, ctx:miParserParser.StatementForStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#expressionStatement.
-    def exitExpressionStatement(self, ctx:miParserParser.ExpressionStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#sequence.
-    def enterSequence(self, ctx:miParserParser.SequenceContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#sequence.
-    def exitSequence(self, ctx:miParserParser.SequenceContext):
+    # Exit a parse tree produced by miParserParser#statementForStatementAST.
+    def exitStatementForStatementAST(self, ctx:miParserParser.StatementForStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#moreStatements.
-    def enterMoreStatements(self, ctx:miParserParser.MoreStatementsContext):
+    # Enter a parse tree produced by miParserParser#statementAssignStatementAST.
+    def enterStatementAssignStatementAST(self, ctx:miParserParser.StatementAssignStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#moreStatements.
-    def exitMoreStatements(self, ctx:miParserParser.MoreStatementsContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#expression.
-    def enterExpression(self, ctx:miParserParser.ExpressionContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#expression.
-    def exitExpression(self, ctx:miParserParser.ExpressionContext):
+    # Exit a parse tree produced by miParserParser#statementAssignStatementAST.
+    def exitStatementAssignStatementAST(self, ctx:miParserParser.StatementAssignStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#comparison.
-    def enterComparison(self, ctx:miParserParser.ComparisonContext):
+    # Enter a parse tree produced by miParserParser#statementFunctionCallStatementAST.
+    def enterStatementFunctionCallStatementAST(self, ctx:miParserParser.StatementFunctionCallStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#comparison.
-    def exitComparison(self, ctx:miParserParser.ComparisonContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#additionExpression.
-    def enterAdditionExpression(self, ctx:miParserParser.AdditionExpressionContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#additionExpression.
-    def exitAdditionExpression(self, ctx:miParserParser.AdditionExpressionContext):
+    # Exit a parse tree produced by miParserParser#statementFunctionCallStatementAST.
+    def exitStatementFunctionCallStatementAST(self, ctx:miParserParser.StatementFunctionCallStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#additionFactor.
-    def enterAdditionFactor(self, ctx:miParserParser.AdditionFactorContext):
+    # Enter a parse tree produced by miParserParser#statementExpressionStatementAST.
+    def enterStatementExpressionStatementAST(self, ctx:miParserParser.StatementExpressionStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#additionFactor.
-    def exitAdditionFactor(self, ctx:miParserParser.AdditionFactorContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#multiplicationExpression.
-    def enterMultiplicationExpression(self, ctx:miParserParser.MultiplicationExpressionContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#multiplicationExpression.
-    def exitMultiplicationExpression(self, ctx:miParserParser.MultiplicationExpressionContext):
+    # Exit a parse tree produced by miParserParser#statementExpressionStatementAST.
+    def exitStatementExpressionStatementAST(self, ctx:miParserParser.StatementExpressionStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#multiplicationFactor.
-    def enterMultiplicationFactor(self, ctx:miParserParser.MultiplicationFactorContext):
+    # Enter a parse tree produced by miParserParser#defStatementAST.
+    def enterDefStatementAST(self, ctx:miParserParser.DefStatementASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#multiplicationFactor.
-    def exitMultiplicationFactor(self, ctx:miParserParser.MultiplicationFactorContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#elementExpression.
-    def enterElementExpression(self, ctx:miParserParser.ElementExpressionContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#elementExpression.
-    def exitElementExpression(self, ctx:miParserParser.ElementExpressionContext):
+    # Exit a parse tree produced by miParserParser#defStatementAST.
+    def exitDefStatementAST(self, ctx:miParserParser.DefStatementASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#elementAccess.
-    def enterElementAccess(self, ctx:miParserParser.ElementAccessContext):
+    # Enter a parse tree produced by miParserParser#moreArgListAST.
+    def enterMoreArgListAST(self, ctx:miParserParser.MoreArgListASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#elementAccess.
-    def exitElementAccess(self, ctx:miParserParser.ElementAccessContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#expressionList.
-    def enterExpressionList(self, ctx:miParserParser.ExpressionListContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#expressionList.
-    def exitExpressionList(self, ctx:miParserParser.ExpressionListContext):
+    # Exit a parse tree produced by miParserParser#moreArgListAST.
+    def exitMoreArgListAST(self, ctx:miParserParser.MoreArgListASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#moreExpressions.
-    def enterMoreExpressions(self, ctx:miParserParser.MoreExpressionsContext):
+    # Enter a parse tree produced by miParserParser#epsilonArgListAST.
+    def enterEpsilonArgListAST(self, ctx:miParserParser.EpsilonArgListASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#moreExpressions.
-    def exitMoreExpressions(self, ctx:miParserParser.MoreExpressionsContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#primitiveExpression.
-    def enterPrimitiveExpression(self, ctx:miParserParser.PrimitiveExpressionContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#primitiveExpression.
-    def exitPrimitiveExpression(self, ctx:miParserParser.PrimitiveExpressionContext):
+    # Exit a parse tree produced by miParserParser#epsilonArgListAST.
+    def exitEpsilonArgListAST(self, ctx:miParserParser.EpsilonArgListASTContext):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#listExpression.
-    def enterListExpression(self, ctx:miParserParser.ListExpressionContext):
+    # Enter a parse tree produced by miParserParser#moreArgsAST.
+    def enterMoreArgsAST(self, ctx:miParserParser.MoreArgsASTContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#listExpression.
-    def exitListExpression(self, ctx:miParserParser.ListExpressionContext):
+    # Exit a parse tree produced by miParserParser#moreArgsAST.
+    def exitMoreArgsAST(self, ctx:miParserParser.MoreArgsASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#ifStatementAST.
+    def enterIfStatementAST(self, ctx:miParserParser.IfStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#ifStatementAST.
+    def exitIfStatementAST(self, ctx:miParserParser.IfStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#whileStatementAST.
+    def enterWhileStatementAST(self, ctx:miParserParser.WhileStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#whileStatementAST.
+    def exitWhileStatementAST(self, ctx:miParserParser.WhileStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#forStatementAST.
+    def enterForStatementAST(self, ctx:miParserParser.ForStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#forStatementAST.
+    def exitForStatementAST(self, ctx:miParserParser.ForStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#returnStatementAST.
+    def enterReturnStatementAST(self, ctx:miParserParser.ReturnStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#returnStatementAST.
+    def exitReturnStatementAST(self, ctx:miParserParser.ReturnStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#printStatementAST.
+    def enterPrintStatementAST(self, ctx:miParserParser.PrintStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#printStatementAST.
+    def exitPrintStatementAST(self, ctx:miParserParser.PrintStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#assignStatementAST.
+    def enterAssignStatementAST(self, ctx:miParserParser.AssignStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#assignStatementAST.
+    def exitAssignStatementAST(self, ctx:miParserParser.AssignStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#functionCallStatementAST.
+    def enterFunctionCallStatementAST(self, ctx:miParserParser.FunctionCallStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#functionCallStatementAST.
+    def exitFunctionCallStatementAST(self, ctx:miParserParser.FunctionCallStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#expressionStatementAST.
+    def enterExpressionStatementAST(self, ctx:miParserParser.ExpressionStatementASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#expressionStatementAST.
+    def exitExpressionStatementAST(self, ctx:miParserParser.ExpressionStatementASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#sequenceAST.
+    def enterSequenceAST(self, ctx:miParserParser.SequenceASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#sequenceAST.
+    def exitSequenceAST(self, ctx:miParserParser.SequenceASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#moreStatementsAST.
+    def enterMoreStatementsAST(self, ctx:miParserParser.MoreStatementsASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#moreStatementsAST.
+    def exitMoreStatementsAST(self, ctx:miParserParser.MoreStatementsASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#expressionAST.
+    def enterExpressionAST(self, ctx:miParserParser.ExpressionASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#expressionAST.
+    def exitExpressionAST(self, ctx:miParserParser.ExpressionASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#comparisonAST.
+    def enterComparisonAST(self, ctx:miParserParser.ComparisonASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#comparisonAST.
+    def exitComparisonAST(self, ctx:miParserParser.ComparisonASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#additionExpressionAST.
+    def enterAdditionExpressionAST(self, ctx:miParserParser.AdditionExpressionASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#additionExpressionAST.
+    def exitAdditionExpressionAST(self, ctx:miParserParser.AdditionExpressionASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#additionFactorAST.
+    def enterAdditionFactorAST(self, ctx:miParserParser.AdditionFactorASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#additionFactorAST.
+    def exitAdditionFactorAST(self, ctx:miParserParser.AdditionFactorASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#multiplicationExpressionAST.
+    def enterMultiplicationExpressionAST(self, ctx:miParserParser.MultiplicationExpressionASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#multiplicationExpressionAST.
+    def exitMultiplicationExpressionAST(self, ctx:miParserParser.MultiplicationExpressionASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#epsilonMultiplicationExpression.
+    def enterEpsilonMultiplicationExpression(self, ctx:miParserParser.EpsilonMultiplicationExpressionContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#epsilonMultiplicationExpression.
+    def exitEpsilonMultiplicationExpression(self, ctx:miParserParser.EpsilonMultiplicationExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#multiplicationFactorAST.
+    def enterMultiplicationFactorAST(self, ctx:miParserParser.MultiplicationFactorASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#multiplicationFactorAST.
+    def exitMultiplicationFactorAST(self, ctx:miParserParser.MultiplicationFactorASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#elementExpressionAST.
+    def enterElementExpressionAST(self, ctx:miParserParser.ElementExpressionASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#elementExpressionAST.
+    def exitElementExpressionAST(self, ctx:miParserParser.ElementExpressionASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#elementAccessAST.
+    def enterElementAccessAST(self, ctx:miParserParser.ElementAccessASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#elementAccessAST.
+    def exitElementAccessAST(self, ctx:miParserParser.ElementAccessASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#expressionListAST.
+    def enterExpressionListAST(self, ctx:miParserParser.ExpressionListASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#expressionListAST.
+    def exitExpressionListAST(self, ctx:miParserParser.ExpressionListASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#epsilonExpressionList.
+    def enterEpsilonExpressionList(self, ctx:miParserParser.EpsilonExpressionListContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#epsilonExpressionList.
+    def exitEpsilonExpressionList(self, ctx:miParserParser.EpsilonExpressionListContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#moreExpressionsAST.
+    def enterMoreExpressionsAST(self, ctx:miParserParser.MoreExpressionsASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#moreExpressionsAST.
+    def exitMoreExpressionsAST(self, ctx:miParserParser.MoreExpressionsASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionINTLITERAL.
+    def enterPrimitiveExpressionINTLITERAL(self, ctx:miParserParser.PrimitiveExpressionINTLITERALContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionINTLITERAL.
+    def exitPrimitiveExpressionINTLITERAL(self, ctx:miParserParser.PrimitiveExpressionINTLITERALContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionFLOATLITERAL.
+    def enterPrimitiveExpressionFLOATLITERAL(self, ctx:miParserParser.PrimitiveExpressionFLOATLITERALContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionFLOATLITERAL.
+    def exitPrimitiveExpressionFLOATLITERAL(self, ctx:miParserParser.PrimitiveExpressionFLOATLITERALContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionCHAR_LITERAL.
+    def enterPrimitiveExpressionCHAR_LITERAL(self, ctx:miParserParser.PrimitiveExpressionCHAR_LITERALContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionCHAR_LITERAL.
+    def exitPrimitiveExpressionCHAR_LITERAL(self, ctx:miParserParser.PrimitiveExpressionCHAR_LITERALContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionRAWSTRINGLITERAL.
+    def enterPrimitiveExpressionRAWSTRINGLITERAL(self, ctx:miParserParser.PrimitiveExpressionRAWSTRINGLITERALContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionRAWSTRINGLITERAL.
+    def exitPrimitiveExpressionRAWSTRINGLITERAL(self, ctx:miParserParser.PrimitiveExpressionRAWSTRINGLITERALContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionID.
+    def enterPrimitiveExpressionID(self, ctx:miParserParser.PrimitiveExpressionIDContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionID.
+    def exitPrimitiveExpressionID(self, ctx:miParserParser.PrimitiveExpressionIDContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionExpression.
+    def enterPrimitiveExpressionExpression(self, ctx:miParserParser.PrimitiveExpressionExpressionContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionExpression.
+    def exitPrimitiveExpressionExpression(self, ctx:miParserParser.PrimitiveExpressionExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionListExpression.
+    def enterPrimitiveExpressionListExpression(self, ctx:miParserParser.PrimitiveExpressionListExpressionContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionListExpression.
+    def exitPrimitiveExpressionListExpression(self, ctx:miParserParser.PrimitiveExpressionListExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#primitiveExpressionLEN.
+    def enterPrimitiveExpressionLEN(self, ctx:miParserParser.PrimitiveExpressionLENContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#primitiveExpressionLEN.
+    def exitPrimitiveExpressionLEN(self, ctx:miParserParser.PrimitiveExpressionLENContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#listExpressionAST.
+    def enterListExpressionAST(self, ctx:miParserParser.ListExpressionASTContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#listExpressionAST.
+    def exitListExpressionAST(self, ctx:miParserParser.ListExpressionASTContext):
+        pass
+
+
+    # Enter a parse tree produced by miParserParser#expr.
+    def enterExpr(self, ctx:miParserParser.ExprContext):
+        pass
+
+    # Exit a parse tree produced by miParserParser#expr.
+    def exitExpr(self, ctx:miParserParser.ExprContext):
         pass
 
 

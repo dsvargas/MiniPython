@@ -31,90 +31,99 @@ N ::= X | N Y  ->  N::= X Y*
 //1.	Program := Statement | Statement Program
 //    N       X           Y           N
 //program := statement | statement Program
-program : statement statement * ;
+program : statement statement *                                                                 #programAST;
 
 //2. Statement := DefStatement | IfStatement | ReturnStatement | PrintStatement | WhileStatement | ForStatement | AssignStatment | FunctionCallStatement | ExpressionStatement
-statement : defStatement
-            | ifStatement
-            | returnStatement
-            | printStatement
-            | whileStatement
-            | forStatement
-            | assignStatement
-            | functionCallStatement
-            | expressionStatement;
+statement : defStatement                                                                        #statementDefStatementAST
+            | ifStatement                                                                       #statementIfStatementAST
+            | returnStatement                                                                   #statementReturnStatementAST
+            | printStatement                                                                    #statementPrintStatementAST
+            | whileStatement                                                                    #statementWhileStatementAST
+            | forStatement                                                                      #statementForStatementAST
+            | assignStatement                                                                   #statementAssignStatementAST
+            | functionCallStatement                                                             #statementFunctionCallStatementAST
+            | expressionStatement                                                               #statementExpressionStatementAST;
 //3.	DefStatement := def identifier ( ArgList ) : Sequence
-defStatement : DEF ID PARENTESISIZQ argList PARENTESISDER DOSPUNTOS sequence;
+defStatement : DEF ID PARENTESISIZQ argList PARENTESISDER DOSPUNTOS sequence                    #defStatementAST;
 //4.	ArgList := identifier MoreArgs | ε
-argList : ID moreArgs | ;///identifider*
+argList : ID moreArgs                                                                           #moreArgListAST
+            |                                                                                   #epsilonArgListAST;
 //          N
 //5.	MoreArgs := , identifier MoreArgs | ε
-moreArgs : (COMA ID)*  ;
+moreArgs : (COMA ID)*                                                                           #moreArgsAST;
 //6.	IfStatement := if Expression : Sequence else : Sequence
-ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence ;
+ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence                          #ifStatementAST;
 //7.	WhileStatement := while Expression : Sequence
-whileStatement : WHILE expression DOSPUNTOS sequence;
+whileStatement : WHILE expression DOSPUNTOS sequence                                            #whileStatementAST;
 //8.	ForStatement := for Expression in ExpressionList : Sequence
-forStatement : FOR expression IN expressionList DOSPUNTOS sequence;
+forStatement : FOR expression IN expressionList DOSPUNTOS sequence                              #forStatementAST;
 //9.	ReturnStatement := return Expression NEWLINE
-returnStatement : RETURN expression NEWLINE;
+returnStatement : RETURN expression NEWLINE                                                     #returnStatementAST;
 //10.	PrintStatement := print Expression NEWLINE
-printStatement : PRINT PARENTESISIZQ expression PARENTESISDER NEWLINE;
+printStatement : PRINT PARENTESISIZQ expression PARENTESISDER NEWLINE                           #printStatementAST;
 //11.	AssignStatement := identifier = Expression NEWLINE
-assignStatement : ID ASYGN expression NEWLINE;
+assignStatement : ID ASYGN expression NEWLINE                                                   #assignStatementAST;
 //12.	FunctionCallStatement := PrimitiveExpression ( ExpressionList ) NEWLINE
-functionCallStatement : primitiveExpression PARENTESISIZQ expressionList PARENTESISDER NEWLINE;
+functionCallStatement : primitiveExpression PARENTESISIZQ expressionList PARENTESISDER NEWLINE  #functionCallStatementAST;
 //13.	ExpressionStatement := ExpressionList NEWLINE
-expressionStatement : expressionList NEWLINE;
+expressionStatement : expressionList NEWLINE                                                    #expressionStatementAST;
 //14.	Sequence := INDENT MoreStatements DEDENT
-sequence : INDENT moreStatements DEDENT;
+sequence : INDENT moreStatements DEDENT                                                         #sequenceAST;
 
 //N ::= X | N Y  ->  N::= X Y*
 //            N               x           n              Y
 //15.	MoreStatements := Statement MoreStatements | Statement
-moreStatements : statement  statement*;
+moreStatements : statement  statement*                                                          #moreStatementsAST;
 //16.	Expression := AdditionExpression Comparison
-expression : additionExpression comparison;
+expression : additionExpression comparison                                                      #expressionAST;
 //          N               x               y               n
 //17.	Comparison := (<|>|<=|>=|==) AdditionExpression*
-comparison : ( (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression )* ;
+comparison : ( (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression )*                 #comparisonAST;
 //18.	AdditionExpression := MultiplicationExpression AdditionFactor
-additionExpression : multiplicationExpression additionFactor;
+additionExpression : multiplicationExpression additionFactor                                    #additionExpressionAST;
 //19.	AdditionFactor := (+|-) MultiplicationExpression AdditionFactor | ε
 // N                 X                Y                       N
-additionFactor :( (SUM|RES) multiplicationExpression )* ;
+additionFactor :( (SUM|RES) multiplicationExpression )*                                         #additionFactorAST;
 //20.	MultiplicationExpression := ElementExpression MultiplicationFactor
-multiplicationExpression : elementExpression multiplicationFactor | ;
+multiplicationExpression : elementExpression multiplicationFactor                               #multiplicationExpressionAST
+                            |                                                                   #epsilonMultiplicationExpression;
 //21.	MultiplicationFactor := (*|/) ElementExpression MultiplicationFactor | ε
 //      N                    X                Y                      N
-multiplicationFactor :( (MUL|DIV) elementExpression )*   ;
+multiplicationFactor :( (MUL|DIV) elementExpression )*                                          #multiplicationFactorAST;
 //22.	ElementExpression := PrimitiveExpression ElementAccess
-elementExpression : primitiveExpression elementAccess;
+elementExpression : primitiveExpression elementAccess                                           #elementExpressionAST;
 //23.	ElementAccess := [ Expression ] ElementAcess | ε
 // N                        X                          N            Y
 //elementAccess : BRACKETIZQ expression BRACKETDER elementAccess |  ;
-elementAccess : (BRACKETIZQ expression BRACKETDER)*    ;
+elementAccess : (BRACKETIZQ expression BRACKETDER)*                                             #elementAccessAST;
 
 //24.	ExpressionList := Expression MoreExpressions | ε
-expressionList : expression moreExpressions |  ;
+expressionList : expression moreExpressions                                                     #expressionListAST
+                |                                                                               #epsilonExpressionList;
 //25.	MoreExpressions := , Expression MoreExpressions | ε
 //  N                       X           N           Y
 //moreExpressions : COMA expression moreExpressions |  ;
-moreExpressions : (COMA expression)*    ;
+moreExpressions : (COMA expression)*                                                            #moreExpressionsAST;
 
 //26.	PrimitiveExpression := integer | float | charConst |  String | identifier (( ExpressionList ) | ε ) | ( Expression ) | ListExpression | len ( Expression )
-primitiveExpression : INTLITERAL
-                    | FLOATLITERAL
-                    | CHAR_LITERAL
-                    | RAWSTRINGLITERAL
-                    | ID (PARENTESISIZQ expressionList PARENTESISDER |   )
-                    | PARENTESISIZQ expression PARENTESISDER
-                    | listExpression
-                    | LEN PARENTESISIZQ expression PARENTESISDER;
+primitiveExpression : INTLITERAL                                                                #primitiveExpressionINTLITERAL
+                    | FLOATLITERAL                                                              #primitiveExpressionFLOATLITERAL
+                    | CHAR_LITERAL                                                              #primitiveExpressionCHAR_LITERAL
+                    | RAWSTRINGLITERAL                                                          #primitiveExpressionRAWSTRINGLITERAL
+                    | ID (PARENTESISIZQ expressionList PARENTESISDER |   )                      #primitiveExpressionID
+                    | PARENTESISIZQ expression PARENTESISDER                                    #primitiveExpressionExpression
+                    | listExpression                                                            #primitiveExpressionListExpression
+                    | LEN PARENTESISIZQ expression PARENTESISDER                                #primitiveExpressionLEN;
 
 //27.	ListExpression := [ ExpressionList ]
-listExpression : BRACKETIZQ expressionList BRACKETDER;
+listExpression : BRACKETIZQ expressionList BRACKETDER                                           #listExpressionAST;
 
+
+//expr := basic-literal | variable-ref | func-call | binary-expr
+errorExpr : primitiveExpression
+        | ID
+        | functionCallStatement
+        | expression;
 //////////////////////////////////////////////////////////////////////////////////
 
 // PALABRAS RESERVADAS
@@ -211,7 +220,7 @@ fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
 
-fragment LETTER : [a-zA-Z\u0080-\u00FF_];
+fragment LETTER : [a-zA-Z];
 
 
 COMMENT : '#' ~[\r\n\f]* ->skip;

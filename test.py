@@ -1,12 +1,12 @@
 #Calcular factorial
 def calcularFac(num):
+
     numaux = 0
     if (num < 1):
         numaux = 1
     else:
         numaux = num * (calcularFac(num-1))
     return numaux
-
 ventas = [100,200,300,400,500]
 
 #promedio de elementos
