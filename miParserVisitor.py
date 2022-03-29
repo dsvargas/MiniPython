@@ -234,8 +234,8 @@ class miParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by miParserParser#expr.
-    def visitExpr(self, ctx:miParserParser.ExprContext):
+    # Visit a parse tree produced by miParserParser#errorExpr.
+    def visitErrorExpr(self, ctx:miParserParser.ErrorExprContext):
         return self.visitChildren(ctx)
 
 

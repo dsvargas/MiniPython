@@ -222,7 +222,7 @@ fragment HEX_DIGIT: [0-9a-fA-F];
 
 fragment LETTER : [a-zA-Z];
 
-
+BLOK_COMMENT : '\'\'\'' .*? '\'\'\'' ->channel(HIDDEN);
 COMMENT : '#' ~[\r\n\f]* ->skip;
 WS  :   [ +\r\n\t] -> skip ;
 NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*

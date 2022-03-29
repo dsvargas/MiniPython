@@ -413,12 +413,12 @@ class miParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#expr.
-    def enterExpr(self, ctx:miParserParser.ExprContext):
+    # Enter a parse tree produced by miParserParser#errorExpr.
+    def enterErrorExpr(self, ctx:miParserParser.ErrorExprContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#expr.
-    def exitExpr(self, ctx:miParserParser.ExprContext):
+    # Exit a parse tree produced by miParserParser#errorExpr.
+    def exitErrorExpr(self, ctx:miParserParser.ErrorExprContext):
         pass
 
 

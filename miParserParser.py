@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3G")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3H")
         buf.write("\u00f4\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -58,15 +58,15 @@ def serializedATN():
         buf.write("\4\2\2ef\7\33\2\2fg\5\34\17\2g\r\3\2\2\2hi\7\5\2\2ij\5")
         buf.write(" \21\2jk\7\33\2\2kl\5\34\17\2l\17\3\2\2\2mn\7\b\2\2no")
         buf.write("\5 \21\2op\7\t\2\2pq\5\60\31\2qr\7\33\2\2rs\5\34\17\2")
-        buf.write("s\21\3\2\2\2tu\7\20\2\2uv\5 \21\2vw\7E\2\2w\23\3\2\2\2")
-        buf.write("xy\7\21\2\2yz\7\66\2\2z{\5 \21\2{|\7\67\2\2|}\7E\2\2}")
+        buf.write("s\21\3\2\2\2tu\7\20\2\2uv\5 \21\2vw\7F\2\2w\23\3\2\2\2")
+        buf.write("xy\7\21\2\2yz\7\66\2\2z{\5 \21\2{|\7\67\2\2|}\7F\2\2}")
         buf.write("\25\3\2\2\2~\177\7<\2\2\177\u0080\7\36\2\2\u0080\u0081")
-        buf.write("\5 \21\2\u0081\u0082\7E\2\2\u0082\27\3\2\2\2\u0083\u0084")
+        buf.write("\5 \21\2\u0081\u0082\7F\2\2\u0082\27\3\2\2\2\u0083\u0084")
         buf.write("\5\64\33\2\u0084\u0085\7\66\2\2\u0085\u0086\5\60\31\2")
-        buf.write("\u0086\u0087\7\67\2\2\u0087\u0088\7E\2\2\u0088\31\3\2")
-        buf.write("\2\2\u0089\u008a\5\60\31\2\u008a\u008b\7E\2\2\u008b\33")
-        buf.write("\3\2\2\2\u008c\u008d\7F\2\2\u008d\u008e\5\36\20\2\u008e")
-        buf.write("\u008f\7G\2\2\u008f\35\3\2\2\2\u0090\u0094\5\4\3\2\u0091")
+        buf.write("\u0086\u0087\7\67\2\2\u0087\u0088\7F\2\2\u0088\31\3\2")
+        buf.write("\2\2\u0089\u008a\5\60\31\2\u008a\u008b\7F\2\2\u008b\33")
+        buf.write("\3\2\2\2\u008c\u008d\7G\2\2\u008d\u008e\5\36\20\2\u008e")
+        buf.write("\u008f\7H\2\2\u008f\35\3\2\2\2\u0090\u0094\5\4\3\2\u0091")
         buf.write("\u0093\5\4\3\2\u0092\u0091\3\2\2\2\u0093\u0096\3\2\2\2")
         buf.write("\u0094\u0092\3\2\2\2\u0094\u0095\3\2\2\2\u0095\37\3\2")
         buf.write("\2\2\u0096\u0094\3\2\2\2\u0097\u0098\5$\23\2\u0098\u0099")
@@ -147,7 +147,8 @@ class miParserParser ( Parser ):
                       "BRACKETIZQ", "BRACKETDER", "LLAVEIZQ", "LLAVEDER", 
                       "ID", "CHAR_LITERAL", "RAWSTRINGLITERAL", "INTLITERAL", 
                       "DECIMAL_FLOAT_LIT", "FLOATLITERAL", "HEX_FLOAT_LIT", 
-                      "COMMENT", "WS", "NEWLINE", "INDENT", "DEDENT" ]
+                      "BLOK_COMMENT", "COMMENT", "WS", "NEWLINE", "INDENT", 
+                      "DEDENT" ]
 
     RULE_program = 0
     RULE_statement = 1
@@ -176,7 +177,7 @@ class miParserParser ( Parser ):
     RULE_moreExpressions = 24
     RULE_primitiveExpression = 25
     RULE_listExpression = 26
-    RULE_expr = 27
+    RULE_errorExpr = 27
 
     ruleNames =  [ "program", "statement", "defStatement", "argList", "moreArgs", 
                    "ifStatement", "whileStatement", "forStatement", "returnStatement", 
@@ -185,7 +186,7 @@ class miParserParser ( Parser ):
                    "expression", "comparison", "additionExpression", "additionFactor", 
                    "multiplicationExpression", "multiplicationFactor", "elementExpression", 
                    "elementAccess", "expressionList", "moreExpressions", 
-                   "primitiveExpression", "listExpression", "expr" ]
+                   "primitiveExpression", "listExpression", "errorExpr" ]
 
     EOF = Token.EOF
     IF=1
@@ -252,11 +253,12 @@ class miParserParser ( Parser ):
     DECIMAL_FLOAT_LIT=62
     FLOATLITERAL=63
     HEX_FLOAT_LIT=64
-    COMMENT=65
-    WS=66
-    NEWLINE=67
-    INDENT=68
-    DEDENT=69
+    BLOK_COMMENT=65
+    COMMENT=66
+    WS=67
+    NEWLINE=68
+    INDENT=69
+    DEDENT=70
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -2927,7 +2929,7 @@ class miParserParser ( Parser ):
         return localctx
 
 
-    class ExprContext(ParserRuleContext):
+    class ErrorExprContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -2950,29 +2952,29 @@ class miParserParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return miParserParser.RULE_expr
+            return miParserParser.RULE_errorExpr
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpr" ):
-                listener.enterExpr(self)
+            if hasattr( listener, "enterErrorExpr" ):
+                listener.enterErrorExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpr" ):
-                listener.exitExpr(self)
+            if hasattr( listener, "exitErrorExpr" ):
+                listener.exitErrorExpr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr" ):
-                return visitor.visitExpr(self)
+            if hasattr( visitor, "visitErrorExpr" ):
+                return visitor.visitErrorExpr(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def expr(self):
+    def errorExpr(self):
 
-        localctx = miParserParser.ExprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 54, self.RULE_expr)
+        localctx = miParserParser.ErrorExprContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 54, self.RULE_errorExpr)
         try:
             self.state = 239
             self._errHandler.sync(self)
