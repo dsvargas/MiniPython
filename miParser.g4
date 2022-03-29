@@ -119,11 +119,6 @@ primitiveExpression : INTLITERAL                                                
 listExpression : BRACKETIZQ expressionList BRACKETDER                                           #listExpressionAST;
 
 
-//expr := basic-literal | variable-ref | func-call | binary-expr
-errorExpr : primitiveExpression
-        | ID
-        | functionCallStatement
-        | expression;
 //////////////////////////////////////////////////////////////////////////////////
 
 // PALABRAS RESERVADAS

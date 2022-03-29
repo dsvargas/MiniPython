@@ -1,6 +1,5 @@
 #Calcular factorial
-'''dfharhadhfahdfhadfhadf
-adhahafdhadfhadfhadf'''
+
 def calcularFac (num):
 
     numaux = 0
