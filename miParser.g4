@@ -52,7 +52,7 @@ argList : ID moreArgs                                                           
 //5.	MoreArgs := , identifier MoreArgs | ε
 moreArgs : (COMA ID)*                                                                           #moreArgsAST;
 //6.	IfStatement := if Expression : Sequence else : Sequence
-ifStatement : IF expression DOSPUNTOS sequence ELSE DOSPUNTOS sequence                          #ifStatementAST;
+ifStatement : IF expression DOSPUNTOS sequence              ( ELSE DOSPUNTOS sequence | );
 //7.	WhileStatement := while Expression : Sequence
 whileStatement : WHILE expression DOSPUNTOS sequence                                            #whileStatementAST;
 //8.	ForStatement := for Expression in ExpressionList : Sequence
@@ -155,19 +155,19 @@ PUNTO:'.';
 DOSPUNTOS:':';
 DOSPUNTOSIGUAL: ':=';
 
-
-EQUALS : '==';
 ASYGN : '=';
+EQUALS : '==';
+SUM : '+';
 SUM2: '++';
 SUMIGUAL: '+=';
-SUM : '+';
+RES : '-';
 RES2: '--';
 RESIGUAL: '-=';
-RES : '-';
-DIVIGUAL: '/=';
 DIV : '/';
-MULIGUAL: '*=';
+DIVIGUAL: '/=';
 MUL : '*';
+MULIGUAL: '*=';
+
 DIF : '!=';
 ADMIRACION : '!';
 MAYORIGUAL : '>=';
@@ -201,11 +201,15 @@ CHAR_LITERAL:  '\\' [btnfr"'\\]
             |     '\'' ~['\\\r\n] '\''
             |'\\' 'u'+ [0-9a-fA-F];
 
-RAWSTRINGLITERAL: '"' ~'"'* '"';
+RAWSTRINGLITERAL: '"' ~'"'* '"' ;
 INTLITERAL: DIGIT DIGIT* ;
+
+
+FLOATLITERAL: DECIMAL_FLOAT_LIT | HEX_FLOAT_LIT;
+
 DECIMAL_FLOAT_LIT      : DECIMALS ('.' DECIMALS? EXPONENT? | EXPONENT)
                        | '.' DECIMALS EXPONENT?;
-FLOATLITERAL: DECIMAL_FLOAT_LIT | HEX_FLOAT_LIT;
+
 HEX_FLOAT_LIT          : '0' [xX] HEX_MANTISSA HEX_EXPONENT;
 fragment HEX_MANTISSA  : ('_'? HEX_DIGIT)+ ('.' ( '_'? HEX_DIGIT )*)?
                        | '.' HEX_DIGIT ('_'? HEX_DIGIT)*;
@@ -215,9 +219,10 @@ fragment HEX_EXPONENT  : [pP] [+-] DECIMALS;
 fragment EXPONENT: [eE] [+-]? DECIMALS;
 fragment HEX_DIGIT: [0-9a-fA-F];
 
-fragment LETTER : [a-zA-Z];
+fragment LETTER : '_'  | [a-z] | [A-Z];
+// [a-zA-Z\u0080-\u00FF_];
 
-BLOK_COMMENT : '\'\'\'' .*? '\'\'\'' ->channel(HIDDEN);
-COMMENT : '#' ~[\r\n\f]* ->skip;
-WS  :   [ +\r\n\t] -> skip ;
+BLOK_COMMENT : '"""' .*? '"""' -> skip;
+COMMENT : '#' ~[\r\n\f]+ ->skip;
+WS  :   [ +\r\n\t\f] -> skip ;
 NEWLINE: ('\r'? '\n' (' ' | '\t')*); //For tabs just switch out ' '* with '\t'*
