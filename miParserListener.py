@@ -1,4 +1,4 @@
-# Generated from C:/Users/caohi/Desktop/2022/Compi/Proyectos/Proyecto/MiniPython\miParser.g4 by ANTLR 4.9.2
+# Generated from C:/Users/dilan/OneDrive - Estudiantes ITCR/Semestre I 2022/Compiladores/Proyecto/Proyecto/MiniPython\miParser.g4 by ANTLR 4.9.2
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .miParserParser import miParserParser
@@ -134,12 +134,12 @@ class miParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by miParserParser#ifStatementAST.
-    def enterIfStatementAST(self, ctx:miParserParser.IfStatementASTContext):
+    # Enter a parse tree produced by miParserParser#ifStatement.
+    def enterIfStatement(self, ctx:miParserParser.IfStatementContext):
         pass
 
-    # Exit a parse tree produced by miParserParser#ifStatementAST.
-    def exitIfStatementAST(self, ctx:miParserParser.IfStatementASTContext):
+    # Exit a parse tree produced by miParserParser#ifStatement.
+    def exitIfStatement(self, ctx:miParserParser.IfStatementContext):
         pass
 
 
@@ -410,15 +410,6 @@ class miParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by miParserParser#listExpressionAST.
     def exitListExpressionAST(self, ctx:miParserParser.ListExpressionASTContext):
-        pass
-
-
-    # Enter a parse tree produced by miParserParser#errorExpr.
-    def enterErrorExpr(self, ctx:miParserParser.ErrorExprContext):
-        pass
-
-    # Exit a parse tree produced by miParserParser#errorExpr.
-    def exitErrorExpr(self, ctx:miParserParser.ErrorExprContext):
         pass
 
 

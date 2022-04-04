@@ -1,4 +1,4 @@
-# Generated from C:/Users/caohi/Desktop/2022/Compi/Proyectos/Proyecto/MiniPython\miParser.g4 by ANTLR 4.9.2
+# Generated from C:/Users/dilan/OneDrive - Estudiantes ITCR/Semestre I 2022/Compiladores/Proyecto/Proyecto/MiniPython\miParser.g4 by ANTLR 4.9.2
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .miParserParser import miParserParser
@@ -79,8 +79,8 @@ class miParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by miParserParser#ifStatementAST.
-    def visitIfStatementAST(self, ctx:miParserParser.IfStatementASTContext):
+    # Visit a parse tree produced by miParserParser#ifStatement.
+    def visitIfStatement(self, ctx:miParserParser.IfStatementContext):
         return self.visitChildren(ctx)
 
 
@@ -231,11 +231,6 @@ class miParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by miParserParser#listExpressionAST.
     def visitListExpressionAST(self, ctx:miParserParser.ListExpressionASTContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by miParserParser#errorExpr.
-    def visitErrorExpr(self, ctx:miParserParser.ErrorExprContext):
         return self.visitChildren(ctx)
 
 
