@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13137aff-389a-40dc-b920-5c310e077700" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ErrorListener.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/~$cumentación externa primera etapa.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/~WRL1788.tmp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentación externa primera etapa.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentación externa primera etapa.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/miParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserLexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/miParserLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserListener.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserListener.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserParser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miParserVisitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/miParserVisitor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grammar.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$cumentación externa primera etapa.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +100,9 @@
       <workItem from="1646846141137" duration="2008000" />
       <workItem from="1647311826781" duration="46917000" />
       <workItem from="1648511807792" duration="4970000" />
+      <workItem from="1648913377462" duration="596000" />
+      <workItem from="1649092157280" duration="39000" />
+      <workItem from="1649092208939" duration="3920000" />
     </task>
     <servers />
   </component>
