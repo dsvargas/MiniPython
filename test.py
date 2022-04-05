@@ -14,13 +14,15 @@ def calcularFac(num):
         num_aux = -1
     else:
         #el numero uno tine que estar entre parenticis para que divida las expreciones
-        num_aux = num * (calcularFac(num-(-1)))
+        # si lo pone con los dos menos va a dar un error de recursion
+        num_aux = num * (calcularFac(num-1))
     return num_aux
 
 ventas = [100,200,300,400,500,-3.14]
 
 Caracter = '%'
 
+cualquier_arreglo= []
 #promedio de elementos
 def promedio(cualquier_arreglo):
     tam = len(cualquier_arreglo)
@@ -36,7 +38,7 @@ def promedio(cualquier_arreglo):
     return resultado
 
 def calcularpromedioventas():
-    prom = promedio(len(ventas))
+    prom = promedio(ventas)#esto ocupa un arreglo para funcionar y el len me va a devolver un numero
     print("El promedio de las ventas es: ")
     #Para que no de error aqui el print tiene que estar entre comillas dobles
     # porque la regla dice que la exprecion puede ser un string
@@ -44,5 +46,9 @@ def calcularpromedioventas():
     print("\n")
     print(prom)
 
-print("Calculo del Factorial:%$ " + calcularFac(6))
+# no se puede concatenar de esta manera strings y numeros. lo correcto es separarlos por comas
+#print("Calculo del Factorial:%$ " + calcularFac(6))
+print("Calculo del Factorial:%$ "+ calcularFac(6))
 calcularpromedioventas()
+
+
