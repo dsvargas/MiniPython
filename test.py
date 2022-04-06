@@ -4,7 +4,7 @@
 
 
 quitamos los caracteres especiales de los string como tildes
-
+Y se cambio la gramatica para que comprendiera bien los comentarios en bloque
 """
 
 #Calcular factorial
@@ -30,6 +30,7 @@ def promedio(cualquier_arreglo):
     #ciclo para recorrer arreglo
     cont = 0
     sumatoria = 0
+
     while (cont <= tam-1):
         sumatoria = sumatoria + cualquier_arreglo[cont]
         cont = cont + 1
@@ -46,9 +47,9 @@ def calcularpromedioventas():
     print("\n")
     print(prom)
 
-# no se puede concatenar de esta manera strings y numeros. lo correcto es separarlos por comas
-#print("Calculo del Factorial:%$ " + calcularFac(6))
+
 print("Calculo del Factorial:%$ "+ calcularFac(6))
 calcularpromedioventas()
+
 
 
