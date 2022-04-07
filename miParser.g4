@@ -52,7 +52,7 @@ argList : ID moreArgs                                                           
 //5.	MoreArgs := , identifier MoreArgs | ε
 moreArgs : (COMA ID)*                                                                           #moreArgsAST;
 //6.	IfStatement := if Expression : Sequence else : Sequence
-ifStatement : IF expression DOSPUNTOS sequence              ( ELSE DOSPUNTOS sequence | );
+ifStatement : IF expression DOSPUNTOS sequence ( ELSE DOSPUNTOS sequence | )                    #ifStatementAST;
 //7.	WhileStatement := while Expression : Sequence
 whileStatement : WHILE expression DOSPUNTOS sequence                                            #whileStatementAST;
 //8.	ForStatement := for Expression in ExpressionList : Sequence

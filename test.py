@@ -52,4 +52,3 @@ print("Calculo del Factorial:%$ "+ calcularFac(6))
 calcularpromedioventas()
 
 
-
