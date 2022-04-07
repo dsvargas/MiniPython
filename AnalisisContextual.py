@@ -1,4 +1,8 @@
 import token
+
+import miParserParser
+import miParserVisitor
+
 from miParserLexer import *
 from miParserParser import *
 from TablaSimbolos import *
@@ -10,7 +14,7 @@ from antlr4 import *
 
 class AContextual(TablaSimbolos,miParserParser):
     nivelActual = 0
-    tabla = TablaSimbolos();
+    tabla = TablaSimbolos()
     listaErrores = []
 
     def __init__(self,nivelActual,tabla,listaErrores):
@@ -24,8 +28,11 @@ class AContextual(TablaSimbolos,miParserParser):
     def CloseScope(self):
         return self.nivelActual-1
 
-    def program(self):
-        return super().program()
+    #ctx = miParserParser.program()
+    def program(self, ctx:miParserParser.ProgramASTContext):
+        #self.visitChildren(ctx)
+        Visit()
+        return None
 
     def statement(self):
         return super().statement()
@@ -40,10 +47,10 @@ class AContextual(TablaSimbolos,miParserParser):
         return super().moreArgs()
 
     def ifStatement(self):
-        return super().ifStatement()
+        return None
 
     def whileStatement(self):
-        return super().whileStatement()
+        return None
 
     def forStatement(self):
         return super().forStatement()
@@ -100,11 +107,12 @@ class AContextual(TablaSimbolos,miParserParser):
         return super().moreExpressions()
 
     def primitiveExpression(self):
-        return super().primitiveExpression()
+        #return super().primitiveExpression()
+        return None
 
     def listExpression(self):
-        return super().listExpression()
-
+        #return super().listExpression()
+        return None
 
 """
 
