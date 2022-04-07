@@ -1,109 +1,147 @@
 import token
-from miParserLexer import *
-from miParserParser import *
-from TablaSimbolos import *
-from ErrorListener import *
+from miParserVisitor import *
+
 from antlr4 import *
 
 
 
 
-class AContextual(TablaSimbolos,miParserParser):
-    nivelActual = 0
-    tabla = TablaSimbolos();
-    listaErrores = []
+class AContextual(miParserVisitor):
 
-    def __init__(self,nivelActual,tabla,listaErrores):
-        self.nivelActual = nivelActual
-        self.tabla = tabla
-        self.listaErrores = listaErrores
+    def visitProgramAST(self, ctx: miParserParser.ProgramASTContext):
+        return super().visitProgramAST(ctx)
 
-    def OpenScope(self):
-        return self.nivelActual +1
+    def visitStatementDefStatementAST(self, ctx: miParserParser.StatementDefStatementASTContext):
+        return super().visitStatementDefStatementAST(ctx)
 
-    def CloseScope(self):
-        return self.nivelActual-1
+    def visitStatementIfStatementAST(self, ctx: miParserParser.StatementIfStatementASTContext):
+        return super().visitStatementIfStatementAST(ctx)
 
-    def program(self):
-        return super().program()
+    def visitStatementReturnStatementAST(self, ctx: miParserParser.StatementReturnStatementASTContext):
+        return super().visitStatementReturnStatementAST(ctx)
 
-    def statement(self):
-        return super().statement()
+    def visitStatementPrintStatementAST(self, ctx: miParserParser.StatementPrintStatementASTContext):
+        return super().visitStatementPrintStatementAST(ctx)
 
-    def defStatement(self):
-        return super().defStatement()
+    def visitStatementWhileStatementAST(self, ctx: miParserParser.StatementWhileStatementASTContext):
+        return super().visitStatementWhileStatementAST(ctx)
 
-    def argList(self):
-        return super().argList()
+    def visitStatementForStatementAST(self, ctx: miParserParser.StatementForStatementASTContext):
+        return super().visitStatementForStatementAST(ctx)
 
-    def moreArgs(self):
-        return super().moreArgs()
+    def visitStatementAssignStatementAST(self, ctx: miParserParser.StatementAssignStatementASTContext):
+        return super().visitStatementAssignStatementAST(ctx)
 
-    def ifStatement(self):
-        return super().ifStatement()
+    def visitStatementFunctionCallStatementAST(self, ctx: miParserParser.StatementFunctionCallStatementASTContext):
+        return super().visitStatementFunctionCallStatementAST(ctx)
 
-    def whileStatement(self):
-        return super().whileStatement()
+    def visitStatementExpressionStatementAST(self, ctx: miParserParser.StatementExpressionStatementASTContext):
+        return super().visitStatementExpressionStatementAST(ctx)
 
-    def forStatement(self):
-        return super().forStatement()
+    def visitDefStatementAST(self, ctx: miParserParser.DefStatementASTContext):
+        return super().visitDefStatementAST(ctx)
 
-    def returnStatement(self):
-        return super().returnStatement()
+    def visitMoreArgListAST(self, ctx: miParserParser.MoreArgListASTContext):
+        return super().visitMoreArgListAST(ctx)
 
-    def printStatement(self):
-        return super().printStatement()
+    def visitEpsilonArgListAST(self, ctx: miParserParser.EpsilonArgListASTContext):
+        return super().visitEpsilonArgListAST(ctx)
 
-    def assignStatement(self):
-        return super().assignStatement()
+    def visitMoreArgsAST(self, ctx: miParserParser.MoreArgsASTContext):
+        return super().visitMoreArgsAST(ctx)
 
-    def functionCallStatement(self):
-        return super().functionCallStatement()
+    def visitIfStatement(self, ctx: miParserParser.IfStatementContext):
+        return super().visitIfStatement(ctx)
 
-    def expressionStatement(self):
-        return super().expressionStatement()
+    def visitWhileStatementAST(self, ctx: miParserParser.WhileStatementASTContext):
+        return super().visitWhileStatementAST(ctx)
 
-    def sequence(self):
-        return super().sequence()
+    def visitForStatementAST(self, ctx: miParserParser.ForStatementASTContext):
+        return super().visitForStatementAST(ctx)
 
-    def moreStatements(self):
-        return super().moreStatements()
+    def visitReturnStatementAST(self, ctx: miParserParser.ReturnStatementASTContext):
+        return super().visitReturnStatementAST(ctx)
 
-    def expression(self):
-        return super().expression()
+    def visitPrintStatementAST(self, ctx: miParserParser.PrintStatementASTContext):
+        return super().visitPrintStatementAST(ctx)
 
-    def comparison(self):
-        return super().comparison()
+    def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
+        return super().visitAssignStatementAST(ctx)
 
-    def additionExpression(self):
-        return super().additionExpression()
+    def visitFunctionCallStatementAST(self, ctx: miParserParser.FunctionCallStatementASTContext):
+        return super().visitFunctionCallStatementAST(ctx)
 
-    def additionFactor(self):
-        return super().additionFactor()
+    def visitExpressionStatementAST(self, ctx: miParserParser.ExpressionStatementASTContext):
+        return super().visitExpressionStatementAST(ctx)
 
-    def multiplicationExpression(self):
-        return super().multiplicationExpression()
+    def visitSequenceAST(self, ctx: miParserParser.SequenceASTContext):
+        return super().visitSequenceAST(ctx)
 
-    def multiplicationFactor(self):
-        return super().multiplicationFactor()
+    def visitMoreStatementsAST(self, ctx: miParserParser.MoreStatementsASTContext):
+        return super().visitMoreStatementsAST(ctx)
 
-    def elementExpression(self):
-        return super().elementExpression()
+    def visitExpressionAST(self, ctx: miParserParser.ExpressionASTContext):
+        return super().visitExpressionAST(ctx)
 
-    def elementAccess(self):
-        return super().elementAccess()
+    def visitComparisonAST(self, ctx: miParserParser.ComparisonASTContext):
+        return super().visitComparisonAST(ctx)
 
-    def expressionList(self):
-        return super().expressionList()
+    def visitAdditionExpressionAST(self, ctx: miParserParser.AdditionExpressionASTContext):
+        return super().visitAdditionExpressionAST(ctx)
 
-    def moreExpressions(self):
-        return super().moreExpressions()
+    def visitAdditionFactorAST(self, ctx: miParserParser.AdditionFactorASTContext):
+        return super().visitAdditionFactorAST(ctx)
 
-    def primitiveExpression(self):
-        return super().primitiveExpression()
+    def visitMultiplicationExpressionAST(self, ctx: miParserParser.MultiplicationExpressionASTContext):
+        return super().visitMultiplicationExpressionAST(ctx)
 
-    def listExpression(self):
-        return super().listExpression()
+    def visitEpsilonMultiplicationExpression(self, ctx: miParserParser.EpsilonMultiplicationExpressionContext):
+        return super().visitEpsilonMultiplicationExpression(ctx)
+
+    def visitMultiplicationFactorAST(self, ctx: miParserParser.MultiplicationFactorASTContext):
+        return super().visitMultiplicationFactorAST(ctx)
+
+    def visitElementExpressionAST(self, ctx: miParserParser.ElementExpressionASTContext):
+        return super().visitElementExpressionAST(ctx)
+
+    def visitElementAccessAST(self, ctx: miParserParser.ElementAccessASTContext):
+        return super().visitElementAccessAST(ctx)
+
+    def visitExpressionListAST(self, ctx: miParserParser.ExpressionListASTContext):
+        return super().visitExpressionListAST(ctx)
+
+    def visitEpsilonExpressionList(self, ctx: miParserParser.EpsilonExpressionListContext):
+        return super().visitEpsilonExpressionList(ctx)
+
+    def visitMoreExpressionsAST(self, ctx: miParserParser.MoreExpressionsASTContext):
+        return super().visitMoreExpressionsAST(ctx)
+
+    def visitPrimitiveExpressionINTLITERAL(self, ctx: miParserParser.PrimitiveExpressionINTLITERALContext):
+        return super().visitPrimitiveExpressionINTLITERAL(ctx)
+
+    def visitPrimitiveExpressionFLOATLITERAL(self, ctx: miParserParser.PrimitiveExpressionFLOATLITERALContext):
+        return super().visitPrimitiveExpressionFLOATLITERAL(ctx)
+
+    def visitPrimitiveExpressionCHAR_LITERAL(self, ctx: miParserParser.PrimitiveExpressionCHAR_LITERALContext):
+        return super().visitPrimitiveExpressionCHAR_LITERAL(ctx)
+
+    def visitPrimitiveExpressionRAWSTRINGLITERAL(self, ctx: miParserParser.PrimitiveExpressionRAWSTRINGLITERALContext):
+        return super().visitPrimitiveExpressionRAWSTRINGLITERAL(ctx)
+
+    def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
+        return super().visitPrimitiveExpressionID(ctx)
+
+    def visitPrimitiveExpressionExpression(self, ctx: miParserParser.PrimitiveExpressionExpressionContext):
+        return super().visitPrimitiveExpressionExpression(ctx)
+
+    def visitPrimitiveExpressionListExpression(self, ctx: miParserParser.PrimitiveExpressionListExpressionContext):
+        return super().visitPrimitiveExpressionListExpression(ctx)
+
+    def visitPrimitiveExpressionLEN(self, ctx: miParserParser.PrimitiveExpressionLENContext):
+        return super().visitPrimitiveExpressionLEN(ctx)
+
+    def visitListExpressionAST(self, ctx: miParserParser.ListExpressionASTContext):
+        return super().visitListExpressionAST(ctx)
 
 
 """
