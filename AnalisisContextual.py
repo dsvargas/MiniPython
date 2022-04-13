@@ -1,5 +1,6 @@
 import token
 from miParserVisitor import *
+from TablaSimbolos import *
 
 from antlr4 import *
 
@@ -7,38 +8,52 @@ from antlr4 import *
 
 
 class AContextual(miParserVisitor):
+    simbTabla: TablaSimbolos
 
     def visitProgramAST(self, ctx: miParserParser.ProgramASTContext):
-        return super().visitProgramAST(ctx)
+        super().visit(ctx.statement())
+        for i in ctx.singleCommand():
+            super().visit(ctx.statement(i))
+        return None
 
     def visitStatementDefStatementAST(self, ctx: miParserParser.StatementDefStatementASTContext):
-        return super().visitStatementDefStatementAST(ctx)
+        super().visitDefStatementAST(ctx)
+        return None
 
     def visitStatementIfStatementAST(self, ctx: miParserParser.StatementIfStatementASTContext):
-        return super().visitStatementIfStatementAST(ctx)
+        super().visitIfStatement(ctx)
+        return None
 
     def visitStatementReturnStatementAST(self, ctx: miParserParser.StatementReturnStatementASTContext):
-        return super().visitStatementReturnStatementAST(ctx)
+        super().visitReturnStatementAST(ctx)
+        return None
 
     def visitStatementPrintStatementAST(self, ctx: miParserParser.StatementPrintStatementASTContext):
-        return super().visitStatementPrintStatementAST(ctx)
+        super().visitPrintStatementAST(ctx)
+        return None
 
     def visitStatementWhileStatementAST(self, ctx: miParserParser.StatementWhileStatementASTContext):
-        return super().visitStatementWhileStatementAST(ctx)
+        super().visitWhileStatementAST(ctx)
+        return None
 
     def visitStatementForStatementAST(self, ctx: miParserParser.StatementForStatementASTContext):
-        return super().visitStatementForStatementAST(ctx)
+        super().visitForStatementAST(ctx)
+        return None
 
     def visitStatementAssignStatementAST(self, ctx: miParserParser.StatementAssignStatementASTContext):
-        return super().visitStatementAssignStatementAST(ctx)
+        super().visitAssignStatementAST(ctx)
+        return None
 
     def visitStatementFunctionCallStatementAST(self, ctx: miParserParser.StatementFunctionCallStatementASTContext):
-        return super().visitStatementFunctionCallStatementAST(ctx)
+        super().visitFunctionCallStatementAST(ctx)
+        return None
 
     def visitStatementExpressionStatementAST(self, ctx: miParserParser.StatementExpressionStatementASTContext):
-        return super().visitStatementExpressionStatementAST(ctx)
-
+        super().visitExpressionAST(ctx)
+        return None
+##################################################################################################################
     def visitDefStatementAST(self, ctx: miParserParser.DefStatementASTContext):
+        
         return super().visitDefStatementAST(ctx)
 
     def visitMoreArgListAST(self, ctx: miParserParser.MoreArgListASTContext):
