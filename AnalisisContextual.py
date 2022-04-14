@@ -53,109 +53,145 @@ class AContextual(miParserVisitor):
         return None
 ##################################################################################################################
     def visitDefStatementAST(self, ctx: miParserParser.DefStatementASTContext):
-        
+        #def identifier ( ArgList ) : Sequence
         return super().visitDefStatementAST(ctx)
 
     def visitMoreArgListAST(self, ctx: miParserParser.MoreArgListASTContext):
+
         return super().visitMoreArgListAST(ctx)
 
     def visitEpsilonArgListAST(self, ctx: miParserParser.EpsilonArgListASTContext):
         return super().visitEpsilonArgListAST(ctx)
 
     def visitMoreArgsAST(self, ctx: miParserParser.MoreArgsASTContext):
+
         return super().visitMoreArgsAST(ctx)
 
     def visitIfStatement(self, ctx: miParserParser.IfStatementContext):
+        #if Expression : Sequence else : Sequence
         return super().visitIfStatement(ctx)
 
     def visitWhileStatementAST(self, ctx: miParserParser.WhileStatementASTContext):
+        #while Expression : Sequence
         return super().visitWhileStatementAST(ctx)
 
     def visitForStatementAST(self, ctx: miParserParser.ForStatementASTContext):
+        #for i in list
+        t = super().visit(ctx.FOR())
+        var = super().visit(ctx.getToken())
+
         return super().visitForStatementAST(ctx)
 
     def visitReturnStatementAST(self, ctx: miParserParser.ReturnStatementASTContext):
+        #return Expression NEWLINE
         return super().visitReturnStatementAST(ctx)
 
     def visitPrintStatementAST(self, ctx: miParserParser.PrintStatementASTContext):
+        #print Expression NEWLINE
         return super().visitPrintStatementAST(ctx)
 
     def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
+        #identifier = Expression NEWLINE
         return super().visitAssignStatementAST(ctx)
 
     def visitFunctionCallStatementAST(self, ctx: miParserParser.FunctionCallStatementASTContext):
+        #PrimitiveExpression ( ExpressionList ) NEWLINE
         return super().visitFunctionCallStatementAST(ctx)
 
     def visitExpressionStatementAST(self, ctx: miParserParser.ExpressionStatementASTContext):
+        #ExpressionList NEWLINE
         return super().visitExpressionStatementAST(ctx)
 
     def visitSequenceAST(self, ctx: miParserParser.SequenceASTContext):
+        #INDENT MoreStatements DEDENT
         return super().visitSequenceAST(ctx)
 
     def visitMoreStatementsAST(self, ctx: miParserParser.MoreStatementsASTContext):
+        #statement  statement*
         return super().visitMoreStatementsAST(ctx)
 
     def visitExpressionAST(self, ctx: miParserParser.ExpressionASTContext):
+        #additionExpression comparison
         return super().visitExpressionAST(ctx)
 
     def visitComparisonAST(self, ctx: miParserParser.ComparisonASTContext):
+        #( (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression )*
         return super().visitComparisonAST(ctx)
 
     def visitAdditionExpressionAST(self, ctx: miParserParser.AdditionExpressionASTContext):
+        #multiplicationExpression additionFactor
         return super().visitAdditionExpressionAST(ctx)
 
     def visitAdditionFactorAST(self, ctx: miParserParser.AdditionFactorASTContext):
+        #( (SUM|RES) multiplicationExpression )*
         return super().visitAdditionFactorAST(ctx)
 
+    #????????????????????????????
     def visitMultiplicationExpressionAST(self, ctx: miParserParser.MultiplicationExpressionASTContext):
+        #elementExpression multiplicationFactor
         return super().visitMultiplicationExpressionAST(ctx)
 
     def visitEpsilonMultiplicationExpression(self, ctx: miParserParser.EpsilonMultiplicationExpressionContext):
+
         return super().visitEpsilonMultiplicationExpression(ctx)
 
     def visitMultiplicationFactorAST(self, ctx: miParserParser.MultiplicationFactorASTContext):
+        # ( (MUL|DIV) elementExpression )*
         return super().visitMultiplicationFactorAST(ctx)
 
     def visitElementExpressionAST(self, ctx: miParserParser.ElementExpressionASTContext):
+        #primitiveExpression elementAccess
         return super().visitElementExpressionAST(ctx)
 
     def visitElementAccessAST(self, ctx: miParserParser.ElementAccessASTContext):
+        #(BRACKETIZQ expression BRACKETDER)*
         return super().visitElementAccessAST(ctx)
 
     def visitExpressionListAST(self, ctx: miParserParser.ExpressionListASTContext):
+        # expression moreExpressions
         return super().visitExpressionListAST(ctx)
 
     def visitEpsilonExpressionList(self, ctx: miParserParser.EpsilonExpressionListContext):
         return super().visitEpsilonExpressionList(ctx)
 
     def visitMoreExpressionsAST(self, ctx: miParserParser.MoreExpressionsASTContext):
+        #(COMA expression)*
         return super().visitMoreExpressionsAST(ctx)
 
     def visitPrimitiveExpressionINTLITERAL(self, ctx: miParserParser.PrimitiveExpressionINTLITERALContext):
+        #INTLITERAL
         return super().visitPrimitiveExpressionINTLITERAL(ctx)
 
     def visitPrimitiveExpressionFLOATLITERAL(self, ctx: miParserParser.PrimitiveExpressionFLOATLITERALContext):
+        #FLOATLITERAL
         return super().visitPrimitiveExpressionFLOATLITERAL(ctx)
 
     def visitPrimitiveExpressionCHAR_LITERAL(self, ctx: miParserParser.PrimitiveExpressionCHAR_LITERALContext):
+        #CHAR_LITERAL
         return super().visitPrimitiveExpressionCHAR_LITERAL(ctx)
 
     def visitPrimitiveExpressionRAWSTRINGLITERAL(self, ctx: miParserParser.PrimitiveExpressionRAWSTRINGLITERALContext):
+        #RAWSTRINGLITERAL
         return super().visitPrimitiveExpressionRAWSTRINGLITERAL(ctx)
 
     def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
+        #ID (PARENTESISIZQ expressionList PARENTESISDER |   )
         return super().visitPrimitiveExpressionID(ctx)
 
     def visitPrimitiveExpressionExpression(self, ctx: miParserParser.PrimitiveExpressionExpressionContext):
+        #PARENTESISIZQ expression PARENTESISDER
         return super().visitPrimitiveExpressionExpression(ctx)
 
     def visitPrimitiveExpressionListExpression(self, ctx: miParserParser.PrimitiveExpressionListExpressionContext):
+        #listExpression
         return super().visitPrimitiveExpressionListExpression(ctx)
 
     def visitPrimitiveExpressionLEN(self, ctx: miParserParser.PrimitiveExpressionLENContext):
+        #LEN PARENTESISIZQ expression PARENTESISDER 
         return super().visitPrimitiveExpressionLEN(ctx)
 
     def visitListExpressionAST(self, ctx: miParserParser.ListExpressionASTContext):
+        #BRACKETIZQ expressionList BRACKETDER
         return super().visitListExpressionAST(ctx)
 
 
