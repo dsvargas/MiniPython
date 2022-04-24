@@ -7,6 +7,8 @@
     <list default="true" id="13137aff-389a-40dc-b920-5c310e077700" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AnalisisContextual.py" beforeDir="false" afterPath="$PROJECT_DIR$/AnalisisContextual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ErrorListener.py" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorListener.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +105,8 @@
       <workItem from="1649092157280" duration="39000" />
       <workItem from="1649092208939" duration="32903000" />
       <workItem from="1649860086701" duration="6006000" />
+      <workItem from="1650035535528" duration="5436000" />
+      <workItem from="1650122711387" duration="22220000" />
     </task>
     <servers />
   </component>
