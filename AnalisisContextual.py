@@ -9,12 +9,16 @@ from antlr4 import *
 
 class AContextual(miParserVisitor):
     simbTabla: TablaSimbolos
+    errorMsgs = []
 
     def visitProgramAST(self, ctx: miParserParser.ProgramASTContext):
-        #super().visit(ctx.statement())
-        self.visit(ctx.statement())
-        for i in ctx.singleCommand():
-            super().visit(ctx.statement(i))
+
+        self.visit(ctx.statement(0))
+        '''for i in ctx.singleCommand():
+            super().visit(ctx.statement(i))'''
+
+        for i in range(1, len(ctx.statement())):
+            self.visit(ctx.statement(i))
         return None
 
     def visitStatementDefStatementAST(self, ctx: miParserParser.StatementDefStatementASTContext):
@@ -129,7 +133,7 @@ class AContextual(miParserVisitor):
 
     def visitMoreStatementsAST(self, ctx: miParserParser.MoreStatementsASTContext):
         #statement  statement*
-        self.visit(ctx.moreStatements())
+        #self.visit(ctx.moreStatements())
         for i in ctx.statement():
             self.visit(i)
         return None
