@@ -5,7 +5,7 @@ from ErrorListener import *
 from AnalisisContextual import*
 
 def main():
-    input = FileStream('test.py')
+    input = FileStream('prueba.txt')
     lexer = miParserLexer(input)
     lexer._listeners = [errorLexer()]
     stream = CommonTokenStream(lexer)
