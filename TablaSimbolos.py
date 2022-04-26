@@ -42,12 +42,13 @@ class TablaSimbolos:
             self.contex = context
 
     def InsertarVarIdent(self, token, ctx, nivel):
-        if not self.repetido(token,nivel):
-            newIdent = self.Ident(token, ctx, nivel)
-            self.tabla.__add__(newIdent)
-        else:
+       # if not self.repetido(token,nivel):
+        newIdent = self.Ident(token, ctx, nivel)
+        self.tabla.append(newIdent)
+        print(len(self.tabla))
+        #else:
             # agregar a la clase de errores
-            print("La variable ya ha sido declarada")
+        #print("La variable ya ha sido declarada")
 
 
     #termina la clase VarIdent
