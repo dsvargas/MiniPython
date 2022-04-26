@@ -32,6 +32,15 @@ class TablaSimbolos:
                 aux = True
         return aux
 
+
+    #termina la clase ident
+
+    class VarIdent:
+        def __init__(self,token, nivel, context):
+            self.token = token
+            self.nivel = nivel
+            self.contex = context
+
     def InsertarVarIdent(self, token, ctx, nivel):
         if not self.repetido(token,nivel):
             newIdent = self.Ident(token, ctx, nivel)
@@ -41,19 +50,33 @@ class TablaSimbolos:
             print("La variable ya ha sido declarada")
 
 
-    #termina la clase ident
-
-    class VarIdent(Ident):
-        def __init__(self,token, nivel, context):
-            self.token = token
-            self.nivel = nivel
-            self.contex = context
-
-
     #termina la clase VarIdent
 
-    class ArrayIdent(Ident):
+    class FuncIdent:
+        args = []
+        def __init__(self,token, ctx, nivel):
+            self.args = []
+            self.token = token
+            self.nivel = nivel
+            self.contex = ctx
+
+        def GetArgs(self):
+            return self.args
+        def SetArgs(self, args):
+            self.args = args
+
+    def InsertarFuncIdent(self, token, ctx, nivel):
+        func = self.FuncIdent(token, ctx, nivel)
+        self.args.append(func)
+
+
+    #termina clase FuncIdent
+
+
+    class ArrayIdent:
         def __init__(self, token, nivel, context):
             self.token = token
             self.nivel = nivel
             self.contex = context
+
+    #termina la clase ArrayIdent
