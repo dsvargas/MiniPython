@@ -23,42 +23,45 @@ class AContextual(miParserVisitor):
         return None
 
     def visitStatementIfStatementAST(self, ctx: miParserParser.StatementIfStatementASTContext):
-        super().visitIfStatement(ctx.ifStatement())
+        self.visitIfStatement(ctx.ifStatement())
         return None
 
     def visitStatementReturnStatementAST(self, ctx: miParserParser.StatementReturnStatementASTContext):
-        super().visitReturnStatementAST(ctx.returnStatement())
+        self.visitReturnStatementAST(ctx.returnStatement())
         return None
 
     def visitStatementPrintStatementAST(self, ctx: miParserParser.StatementPrintStatementASTContext):
-        super().visitPrintStatementAST(ctx.printStatement())
+        self.visitPrintStatementAST(ctx.printStatement())
         return None
 
     def visitStatementWhileStatementAST(self, ctx: miParserParser.StatementWhileStatementASTContext):
-        super().visitWhileStatementAST(ctx.whileStatement())
+        self.visitWhileStatementAST(ctx.whileStatement())
         return None
 
     def visitStatementForStatementAST(self, ctx: miParserParser.StatementForStatementASTContext):
-        super().visitForStatementAST(ctx.forStatement())
+        self.visitForStatementAST(ctx.forStatement())
         return None
 
     def visitStatementAssignStatementAST(self, ctx: miParserParser.StatementAssignStatementASTContext):
-        super().visitAssignStatementAST(ctx.assignStatement())
+        self.visitAssignStatementAST(ctx.assignStatement())
         return None
 
     def visitStatementFunctionCallStatementAST(self, ctx: miParserParser.StatementFunctionCallStatementASTContext):
-        super().visitFunctionCallStatementAST(ctx.functionCallStatement())
+        self.visitFunctionCallStatementAST(ctx.functionCallStatement())
         return None
 
     def visitStatementExpressionStatementAST(self, ctx: miParserParser.StatementExpressionStatementASTContext):
-        super().visitExpressionAST(ctx.expressionStatement())
+        self.visitExpressionAST(ctx.expressionStatement())
         return None
 ##################################################################################################################
     def visitDefStatementAST(self, ctx: miParserParser.DefStatementASTContext):
         #DEF ID PARENTESISIZQ argList PARENTESISDER DOSPUNTOS sequence
+
         self.visit(ctx.argList())
         self.visit(ctx.sequence())
-
+        #openScope
+        self.tablaSimb.InsertarFuncIdent(token, ctx, self.nivelActual)
+        #closeScope
         return None
 
     def visitMoreArgListAST(self, ctx: miParserParser.MoreArgListASTContext):
@@ -75,6 +78,7 @@ class AContextual(miParserVisitor):
     def visitIfStatement(self, ctx: miParserParser.IfStatementContext):
         #IF expression DOSPUNTOS sequence ( ELSE DOSPUNTOS sequence | )
         self.visit(ctx.IF())
+
         self.visit(ctx.expression())
         self.visit(ctx.sequence())
         # else visitar sequence
@@ -88,8 +92,7 @@ class AContextual(miParserVisitor):
 
     def visitForStatementAST(self, ctx: miParserParser.ForStatementASTContext):
         #for i in list
-        '''t = super().visit(ctx.FOR())
-        var = super().visit(ctx.getToken())'''
+
         self.visit(ctx.expression())
         self.visit(ctx.expressionList())
         self.visit(ctx.sequence())
@@ -109,8 +112,9 @@ class AContextual(miParserVisitor):
 
     def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
         #identifier = Expression NEWLINE
-        self.tablaSimb.InsertarVarIdent(ctx.getToken(()), ctx, self.nivelActual)
+        self.tablaSimb.InsertarVarIdent(ctx.getToken((),None), ctx, self.nivelActual)
         self.visit(ctx.expression())
+
         return None
 
 
@@ -207,27 +211,29 @@ class AContextual(miParserVisitor):
 
     def visitPrimitiveExpressionINTLITERAL(self, ctx: miParserParser.PrimitiveExpressionINTLITERALContext):
         #INTLITERAL
+
         #Añadir a la lista
-        return None
+        return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionFLOATLITERAL(self, ctx: miParserParser.PrimitiveExpressionFLOATLITERALContext):
         #FLOATLITERAL
         #Añadir a la lista
-        return None
+
+        return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionCHAR_LITERAL(self, ctx: miParserParser.PrimitiveExpressionCHAR_LITERALContext):
         #CHAR_LITERAL
         #Añadir a la lista
-        return None
+        return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionRAWSTRINGLITERAL(self, ctx: miParserParser.PrimitiveExpressionRAWSTRINGLITERALContext):
         #RAWSTRINGLITERAL
         #Añadir a la lista
-        return None
+        return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
         #ID (PARENTESISIZQ expressionList PARENTESISDER |   )
-        #self.visit(ctx.expressionList())
+        self.visit(ctx.expressionList())
         return None
 
     def visitPrimitiveExpressionExpression(self, ctx: miParserParser.PrimitiveExpressionExpressionContext):
