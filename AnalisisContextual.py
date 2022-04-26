@@ -4,25 +4,22 @@ from TablaSimbolos import *
 
 from antlr4 import *
 
-
-
-
 class AContextual(miParserVisitor):
-    simbTabla: TablaSimbolos
+    tablaSimb = TablaSimbolos()
     errorMsgs = []
+    nivelActual = 0
 
     def visitProgramAST(self, ctx: miParserParser.ProgramASTContext):
 
         self.visit(ctx.statement(0))
-        '''for i in ctx.singleCommand():
-            super().visit(ctx.statement(i))'''
-
         for i in range(1, len(ctx.statement())):
             self.visit(ctx.statement(i))
+            print(ctx.statement(i).getText())
+
         return None
 
     def visitStatementDefStatementAST(self, ctx: miParserParser.StatementDefStatementASTContext):
-        super().visitDefStatementAST(ctx)
+        self.visitDefStatementAST(ctx)
         return None
 
     def visitStatementIfStatementAST(self, ctx: miParserParser.StatementIfStatementASTContext):
@@ -46,7 +43,7 @@ class AContextual(miParserVisitor):
         return None
 
     def visitStatementAssignStatementAST(self, ctx: miParserParser.StatementAssignStatementASTContext):
-        super().visitAssignStatementAST(ctx)
+        self.visitAssignStatementAST(ctx)
         return None
 
     def visitStatementFunctionCallStatementAST(self, ctx: miParserParser.StatementFunctionCallStatementASTContext):
@@ -113,8 +110,7 @@ class AContextual(miParserVisitor):
 
     def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
         #identifier = Expression NEWLINE
-        self.visit(ctx.ID())
-        self.visit(ctx.ASYGN())
+        self.tablaSimb.InsertarVarIdent(ctx.getToken(()), ctx, self.nivelActual)
         self.visit(ctx.expression())
         return None
 
