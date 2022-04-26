@@ -23,35 +23,35 @@ class AContextual(miParserVisitor):
         return None
 
     def visitStatementIfStatementAST(self, ctx: miParserParser.StatementIfStatementASTContext):
-        super().visitIfStatement(ctx)
+        super().visitIfStatement(ctx.ifStatement())
         return None
 
     def visitStatementReturnStatementAST(self, ctx: miParserParser.StatementReturnStatementASTContext):
-        super().visitReturnStatementAST(ctx)
+        super().visitReturnStatementAST(ctx.returnStatement())
         return None
 
     def visitStatementPrintStatementAST(self, ctx: miParserParser.StatementPrintStatementASTContext):
-        super().visitPrintStatementAST(ctx)
+        super().visitPrintStatementAST(ctx.printStatement())
         return None
 
     def visitStatementWhileStatementAST(self, ctx: miParserParser.StatementWhileStatementASTContext):
-        super().visitWhileStatementAST(ctx)
+        super().visitWhileStatementAST(ctx.whileStatement())
         return None
 
     def visitStatementForStatementAST(self, ctx: miParserParser.StatementForStatementASTContext):
-        super().visitForStatementAST(ctx)
+        super().visitForStatementAST(ctx.forStatement())
         return None
 
     def visitStatementAssignStatementAST(self, ctx: miParserParser.StatementAssignStatementASTContext):
-        self.visitAssignStatementAST(ctx)
+        super().visitAssignStatementAST(ctx.assignStatement())
         return None
 
     def visitStatementFunctionCallStatementAST(self, ctx: miParserParser.StatementFunctionCallStatementASTContext):
-        super().visitFunctionCallStatementAST(ctx)
+        super().visitFunctionCallStatementAST(ctx.functionCallStatement())
         return None
 
     def visitStatementExpressionStatementAST(self, ctx: miParserParser.StatementExpressionStatementASTContext):
-        super().visitExpressionAST(ctx)
+        super().visitExpressionAST(ctx.expressionStatement())
         return None
 ##################################################################################################################
     def visitDefStatementAST(self, ctx: miParserParser.DefStatementASTContext):
@@ -76,8 +76,7 @@ class AContextual(miParserVisitor):
         #IF expression DOSPUNTOS sequence ( ELSE DOSPUNTOS sequence | )
         self.visit(ctx.IF())
         self.visit(ctx.expression())
-
-        #self.visit(ctx.sequence())
+        self.visit(ctx.sequence())
         # else visitar sequence
         return None
 
@@ -228,7 +227,7 @@ class AContextual(miParserVisitor):
 
     def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
         #ID (PARENTESISIZQ expressionList PARENTESISDER |   )
-       #self.visit(ctx.expressionList())
+        #self.visit(ctx.expressionList())
         return None
 
     def visitPrimitiveExpressionExpression(self, ctx: miParserParser.PrimitiveExpressionExpressionContext):
