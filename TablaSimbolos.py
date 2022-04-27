@@ -10,7 +10,7 @@ class TablaSimbolos:
 
     def __init__(self):
         self.tabla = []
-        self.nivel = 0
+
 
 
     class Ident:
@@ -49,7 +49,7 @@ class TablaSimbolos:
         else:
             # agregar a la clase de errores
             print("La variable ya ha sido declarada")
-        print(len(self.tabla))
+
 
     #termina la clase VarIdent
 
@@ -80,4 +80,18 @@ class TablaSimbolos:
             self.nivel = nivel
             self.contex = context
 
+    def InsertarArrayIdent(self, token, ctx, nivel):
+        lista = self.ArrayIdent(token, ctx, nivel)
+        self.lista.append(lista)
+
     #termina la clase ArrayIdent
+
+
+    def buscar(self,nombre):
+        for var in range(len(self.tabla)):
+            if self.tabla[var].getToken() == nombre:
+                print(self.tabla[var].getToken())
+                token = self.tabla[var].getToken()
+                return var
+
+

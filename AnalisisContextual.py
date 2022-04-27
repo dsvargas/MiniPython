@@ -120,12 +120,9 @@ class AContextual(miParserVisitor):
 
     def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
         #identifier = Expression NEWLINE
-
         self.tablaSimb.InsertarVarIdent(ctx.ID(), ctx, self.nivelActual)
         self.visit(ctx.expression())
-
         return None
-
 
     def visitFunctionCallStatementAST(self, ctx: miParserParser.FunctionCallStatementASTContext):
         #PrimitiveExpression ( ExpressionList ) NEWLINE
@@ -152,20 +149,23 @@ class AContextual(miParserVisitor):
 
     def visitExpressionAST(self, ctx: miParserParser.ExpressionASTContext):
         #additionExpression comparison
-        self.visit(ctx.additionExpression())
-        self.visit(ctx.comparison())
+        if (ctx.additionExpression()):
+            self.visit(ctx.additionExpression())
+        else:
+            self.visit(ctx.comparison())
         return None
 
     def visitComparisonAST(self, ctx: miParserParser.ComparisonASTContext):
         #( (MENOR|MAYOR|MENORIGUAL|MAYORIGUAL|EQUALS) additionExpression )*
-        for i in ctx.additionExpression():
-            self.visit(i)
-        return None
+
+        return self.visitChildren(ctx)
 
     def visitAdditionExpressionAST(self, ctx: miParserParser.AdditionExpressionASTContext):
         #multiplicationExpression additionFactor
-        self.visit(ctx.multiplicationExpression())
-        self.visit(ctx.additionFactor())
+        if(ctx.multiplicationExpression()):
+            self.visit(ctx.multiplicationExpression())
+        else:
+            self.visit(ctx.additionFactor())
         return None
 
     def visitAdditionFactorAST(self, ctx: miParserParser.AdditionFactorASTContext):
@@ -174,8 +174,10 @@ class AContextual(miParserVisitor):
 
     def visitMultiplicationExpressionAST(self, ctx: miParserParser.MultiplicationExpressionASTContext):
         #elementExpression multiplicationFactor
-        self.visit(ctx.elementExpression())
-        self.visit(ctx.multiplicationFactor())
+        if(ctx.elementExpression()):
+            self.visit(ctx.elementExpression())
+        else:
+            self.visit(ctx.multiplicationFactor())
         return None
 
     def visitEpsilonMultiplicationExpression(self, ctx: miParserParser.EpsilonMultiplicationExpressionContext):
@@ -183,13 +185,14 @@ class AContextual(miParserVisitor):
 
     def visitMultiplicationFactorAST(self, ctx: miParserParser.MultiplicationFactorASTContext):
         # ( (MUL|DIV) elementExpression )*
-
         return self.visitChildren(ctx)
 
     def visitElementExpressionAST(self, ctx: miParserParser.ElementExpressionASTContext):
         #primitiveExpression elementAccess
-        self.visit(ctx.primitiveExpression())
-        self.visit(ctx.elementAccess())
+        if(ctx.primitiveExpression()):
+            self.visit(ctx.primitiveExpression())
+        else:
+            self.visit(ctx.elementAccess())
 
         return None
 
@@ -202,8 +205,12 @@ class AContextual(miParserVisitor):
 
     def visitExpressionListAST(self, ctx: miParserParser.ExpressionListASTContext):
         # expression moreExpressions
-        self.visit(ctx.expression())
-        self.visit(ctx.moreExpressions())
+        if ctx.expression():
+            listaExp = ctx.moreExpressions()
+            self.tablaSimb.InsertarArrayIdent(listaExp,ctx,self.nivelActual)
+            self.visit(ctx.expression())
+        else:
+            self.visit(ctx.moreExpressions())
         return None
 
     def visitEpsilonExpressionList(self, ctx: miParserParser.EpsilonExpressionListContext):
@@ -233,12 +240,12 @@ class AContextual(miParserVisitor):
 
     def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
         #ID (PARENTESISIZQ expressionList PARENTESISDER |   )
-        self.visit(ctx.expressionList())
+        var = self.tablaSimb.buscar(ctx.ID())
         return None
 
     def visitPrimitiveExpressionExpression(self, ctx: miParserParser.PrimitiveExpressionExpressionContext):
         #PARENTESISIZQ expression PARENTESISDER
-        self.visit(ctx.expression())
+        #self.visit(ctx.expression())
         return None
 
     def visitPrimitiveExpressionListExpression(self, ctx: miParserParser.PrimitiveExpressionListExpressionContext):
@@ -248,11 +255,12 @@ class AContextual(miParserVisitor):
 
     def visitPrimitiveExpressionLEN(self, ctx: miParserParser.PrimitiveExpressionLENContext):
         #LEN PARENTESISIZQ expression PARENTESISDER
+        #self.tablaSimb.buscar(ctx.expression())
         self.visit(ctx.expression())
         return None
 
     def visitListExpressionAST(self, ctx: miParserParser.ListExpressionASTContext):
         #BRACKETIZQ expressionList BRACKETDER
-        self.visit(ctx.expressionList())
+        #self.visit(ctx.expressionList())
         return None
 
