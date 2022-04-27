@@ -7,7 +7,13 @@ from antlr4 import *
 class AContextual(miParserVisitor):
     tablaSimb = TablaSimbolos()
     errorMsgs = []
-    nivelActual = 0
+    nivelActual = 1
+
+    def openScope(self):
+        self.nivelActual+=1;
+
+    def closeScope(self):
+        self.nivelActual -=1;
 
     def visitProgramAST(self, ctx: miParserParser.ProgramASTContext):
 
@@ -60,12 +66,14 @@ class AContextual(miParserVisitor):
         self.visit(ctx.argList())
         self.visit(ctx.sequence())
         #openScope
+        self.openScope()
         self.tablaSimb.InsertarFuncIdent(token, ctx, self.nivelActual)
         #closeScope
+        self.closeScope()
         return None
 
     def visitMoreArgListAST(self, ctx: miParserParser.MoreArgListASTContext):
-        super().visitMoreArgsAST(ctx)
+        self.visitMoreArgsAST(ctx)
         return None
 
     def visitEpsilonArgListAST(self, ctx: miParserParser.EpsilonArgListASTContext):
@@ -112,7 +120,8 @@ class AContextual(miParserVisitor):
 
     def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
         #identifier = Expression NEWLINE
-        self.tablaSimb.InsertarVarIdent(ctx.getToken((),None), ctx, self.nivelActual)
+
+        self.tablaSimb.InsertarVarIdent(ctx.ID(), ctx, self.nivelActual)
         self.visit(ctx.expression())
 
         return None
@@ -161,9 +170,7 @@ class AContextual(miParserVisitor):
 
     def visitAdditionFactorAST(self, ctx: miParserParser.AdditionFactorASTContext):
         #( (SUM|RES) multiplicationExpression )*
-        for i in ctx.multiplicationExpression():
-            self.visit(i)
-        return None
+        return self.visitChildren(ctx)
 
     def visitMultiplicationExpressionAST(self, ctx: miParserParser.MultiplicationExpressionASTContext):
         #elementExpression multiplicationFactor
@@ -176,9 +183,8 @@ class AContextual(miParserVisitor):
 
     def visitMultiplicationFactorAST(self, ctx: miParserParser.MultiplicationFactorASTContext):
         # ( (MUL|DIV) elementExpression )*
-        for i in ctx.elementExpression():
-            self.visit(i)
-        return None
+
+        return self.visitChildren(ctx)
 
     def visitElementExpressionAST(self, ctx: miParserParser.ElementExpressionASTContext):
         #primitiveExpression elementAccess
@@ -211,24 +217,18 @@ class AContextual(miParserVisitor):
 
     def visitPrimitiveExpressionINTLITERAL(self, ctx: miParserParser.PrimitiveExpressionINTLITERALContext):
         #INTLITERAL
-
-        #Añadir a la lista
         return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionFLOATLITERAL(self, ctx: miParserParser.PrimitiveExpressionFLOATLITERALContext):
         #FLOATLITERAL
-        #Añadir a la lista
-
         return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionCHAR_LITERAL(self, ctx: miParserParser.PrimitiveExpressionCHAR_LITERALContext):
         #CHAR_LITERAL
-        #Añadir a la lista
         return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionRAWSTRINGLITERAL(self, ctx: miParserParser.PrimitiveExpressionRAWSTRINGLITERALContext):
         #RAWSTRINGLITERAL
-        #Añadir a la lista
         return self.visitChildren(ctx)
 
     def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
