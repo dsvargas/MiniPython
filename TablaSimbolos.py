@@ -10,6 +10,7 @@ class TablaSimbolos:
 
     def __init__(self):
         self.tabla = []
+        self.nivel = 0
 
 
     class Ident:
@@ -28,10 +29,10 @@ class TablaSimbolos:
     def repetido(self, id, nivel):
         aux = False
         for var in range(len(self.tabla)):
-            if self.tabla[var].getToken() == id & self.tabla[var].getNivel() == nivel:
-                aux = True
+            if self.tabla[var].getToken() == id:
+                if self.tabla[var].getNivel() == nivel:
+                    aux = True
         return aux
-
 
     #termina la clase ident
 
@@ -42,14 +43,13 @@ class TablaSimbolos:
             self.contex = context
 
     def InsertarVarIdent(self, token, ctx, nivel):
-       # if not self.repetido(token,nivel):
-        newIdent = self.Ident(token, ctx, nivel)
-        self.tabla.append(newIdent)
-        print(len(self.tabla))
-        #else:
+        if not self.repetido(token,nivel):
+            newIdent = self.Ident(token, ctx, nivel)
+            self.tabla.append(newIdent)
+        else:
             # agregar a la clase de errores
-        #print("La variable ya ha sido declarada")
-
+            print("La variable ya ha sido declarada")
+        print(len(self.tabla))
 
     #termina la clase VarIdent
 
