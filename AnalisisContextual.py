@@ -120,9 +120,20 @@ class AContextual(miParserVisitor):
 
     def visitAssignStatementAST(self, ctx: miParserParser.AssignStatementASTContext):
         #identifier = Expression NEWLINE
+        id = ctx.ID()
+        var = self.tablaSimb.buscar(id)
+        if var != None:
+            for i in self.tablaSimb.tabla:
+                if str(i.token.getText())==id.getText():
+                    i.value = ctx.expression()
+                    self.visit(ctx.expression())
+                else:
+                    self.tablaSimb.InsertarVarIdent(ctx.ID(), ctx, self.nivelActual)
+                    self.visit(ctx.expression())
         self.tablaSimb.InsertarVarIdent(ctx.ID(), ctx, self.nivelActual)
         self.visit(ctx.expression())
-        return None
+
+        return
 
     def visitFunctionCallStatementAST(self, ctx: miParserParser.FunctionCallStatementASTContext):
         #PrimitiveExpression ( ExpressionList ) NEWLINE
@@ -240,8 +251,19 @@ class AContextual(miParserVisitor):
 
     def visitPrimitiveExpressionID(self, ctx: miParserParser.PrimitiveExpressionIDContext):
         #ID (PARENTESISIZQ expressionList PARENTESISDER |   )
-        var = self.tablaSimb.buscar(ctx.ID())
-        return None
+        id = ctx.ID()
+        var = self.tablaSimb.buscar(id)
+        if (var !=None):
+            if ctx.PARENTESISIZQ()!=None and ctx.expressionList()!=None and ctx.PARENTESISDER()!=None:
+                tama = len(ctx.expressionList().expression())
+                i = 0
+                while(i<len(self.tablaSimb.tabla)):
+                    if(id.getText()==self.tablaSimb.tabla[i].token.getText()):
+                        if(tama>len(self.tablaSimb.tabla[i].params)):
+                            self.errorMsgs.append("Error de alcance : bllll")
+                    i+=1
+                self.visit(ctx.expressionList())
+        return
 
     def visitPrimitiveExpressionExpression(self, ctx: miParserParser.PrimitiveExpressionExpressionContext):
         #PARENTESISIZQ expression PARENTESISDER
@@ -263,4 +285,3 @@ class AContextual(miParserVisitor):
         #BRACKETIZQ expressionList BRACKETDER
         #self.visit(ctx.expressionList())
         return None
-

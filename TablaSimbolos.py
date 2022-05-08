@@ -11,8 +11,6 @@ class TablaSimbolos:
     def __init__(self):
         self.tabla = []
 
-
-
     class Ident:
         def __init__(self, token, context, nivel):
             self.token = token
@@ -28,9 +26,9 @@ class TablaSimbolos:
 
     def repetido(self, id, nivel):
         aux = False
-        for var in range(len(self.tabla)):
-            if self.tabla[var].getToken() == id:
-                if self.tabla[var].getNivel() == nivel:
+        for var in self.tabla:
+            if var.getToken() == id:
+                if var.getNivel() == nivel:
                     aux = True
         return aux
 
@@ -87,11 +85,9 @@ class TablaSimbolos:
     #termina la clase ArrayIdent
 
 
-    def buscar(self,nombre):
-        for var in range(len(self.tabla)):
-            if self.tabla[var].getToken() == nombre:
-                print(self.tabla[var].getToken())
-                token = self.tabla[var].getToken()
+    def buscar(self,token):
+        for var in self.tabla:
+            if str(var.token.getText())==token.getText():
+                print(str(var.token.getText()))
                 return var
-
-
+        return None
